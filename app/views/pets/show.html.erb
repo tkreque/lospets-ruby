@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Breed:</strong>
+  <%= @pet.breed %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pet.status %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @pet.address %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @pet.user %>
+</p>
+
+<p>
+  <strong>Img:</strong>
+  <%= @pet.img %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @pet.tag %>
+</p>
+
+<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<%= link_to 'Back', pets_path %>

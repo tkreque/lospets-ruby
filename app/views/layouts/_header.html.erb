@@ -1,0 +1,23 @@
+<header>
+    <div class='superiorMenu'>
+        <div class='logoMenu'>
+            <%= link_to image_tag('lospets_logo.png', alt: 'LosPets', width: 240, height: 120), root_path %>
+        </div>
+        <div class='navegationLeftMenu'>
+            <ul>
+                <li><%= link_to "Lista de Pets", '/pets' %></li>
+                <li><%= link_to "Usuários", '/users' %></li>
+            </ul>
+        </div>
+        <div class='navegationRightMenu'>
+            <ul>
+                <li><%= link_to "Sobre o projeto", '/about' %></li>
+                <li><%= link_to "Contato", '/contact' %></li>
+                <li><%= link_to "Ajude-me", '/help' %></li>
+            </ul>
+        </div>
+        <div class='loginMenu'>
+            Olá Fulano
+        </div>
+    </div>
+</header>

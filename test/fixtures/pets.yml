@@ -2,18 +2,18 @@
 
 one:
   name: MyString
-  breed: MyString
-  status: MyString
-  address: MyString
-  user: MyString
-  img: MyString
-  tag: MyString
+  breed: 
+  status: 
+  address: 
+  user: 
+  image: 
+  tag: 
 
 two:
   name: MyString
-  breed: MyString
-  status: MyString
-  address: MyString
-  user: MyString
-  img: MyString
-  tag: MyString
+  breed: 
+  status: 
+  address: 
+  user: 
+  image: 
+  tag: 

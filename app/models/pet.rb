@@ -1,10 +1,11 @@
 class Pet
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :name, type: String
-  field :breed, type: String
-  field :status, type: String
-  field :address, type: String
-  field :user, type: String
-  field :img, type: String
-  field :tag, type: String
+  field :breed, type: Breed
+  field :status, type: Status
+  field :address, type: Address
+  field :user, type: User
+  field :image, type: Array
+  field :tag, type: Array
 end

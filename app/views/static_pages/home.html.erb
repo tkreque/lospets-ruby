@@ -1,9 +1,14 @@
 <% provide(:title, "Home") %>
-<h1>Home</h1>
+<div class='maps'>
+    <!--<div class='mapsSearchBox'></div>-->
+    <div id='map'></div>
+    <div class='mapsLegend'></div>
+</div>
 
-<br />
-<br />
-<br />
-<br />
+<div class='mapsFilters'>
+    
+</div>
 
-<h2> Em construção </h2>
+<script>
+     <%= render(:partial => "static_pages/maps.js") %> 
+ </script>

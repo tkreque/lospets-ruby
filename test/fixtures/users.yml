@@ -2,18 +2,16 @@
 
 one:
   name: MyString
-  contact: MyString
-  pets: MyString
-  address: MyString
-  configuration: MyString
-  img: MyString
-  password: MyString
+  contact: 
+  pets: 
+  configuration: 
+  address: 
+  image: MyString
 
 two:
   name: MyString
-  contact: MyString
-  pets: MyString
-  address: MyString
-  configuration: MyString
-  img: MyString
-  password: MyString
+  contact: 
+  pets: 
+  configuration: 
+  address: 
+  image: MyString

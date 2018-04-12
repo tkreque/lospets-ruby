@@ -1,11 +1,16 @@
 <% provide(:title, "Home") %>
 <div class='maps'>
-    <!--<div class='mapsSearchBox'></div>-->
+    <input id="mapsSearch" class="controls" type="text" placeholder="Search Box" />
     <div id='map'></div>
-    <div class='mapsLegend'></div>
+    <div id='mapsLegend'><h3>Legenda</h3></div>
 </div>
 
 <div class='mapsFilters'>
+    <input type="button" value="Square" onclick="setSquare(5)"><br />
+    
+    <input type="radio" name="myRadios" id="rdSize" onclick="setFilter(this);" value="Pequeno" />
+    <input type="radio" name="myRadios" id="rdSize" onclick="setFilter(this);" value="Médio" />
+    <input type="radio" name="myRadios" id="rdSize" onclick="setFilter(this);" value="Grande" />
     
 </div>
 

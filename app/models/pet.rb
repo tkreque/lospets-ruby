@@ -8,4 +8,6 @@ class Pet
   field :user, type: User
   field :image, type: Array
   field :tag, type: Array
+  
+
 end

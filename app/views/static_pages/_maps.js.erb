@@ -28,6 +28,7 @@ var ageFilter = 'none';
 var behaviourFilter = 'none';
 var apperanceFilter = 'none';
 var statusFilter = 'none';
+var actualFilter = 'none';
 
 
 // Get Location
@@ -127,8 +128,6 @@ function setMarkers(position, square){
 function filterPets(petsTemp){
   filterPet = <%= raw @petsTemp.to_json %>;
   pets = [];
-  // sizeFilter = document.getElementById('rdSize');
-  // console.log(sizeFilter);
   
   $.each(filterPet, function(index,pet){
     $.each(petsTemp, function(index2,petTemp){
@@ -138,33 +137,36 @@ function filterPets(petsTemp){
         && pet.address.lng == petTemp.lng
       ){
         $.each(pet.tag,function(i,t){
-          if (t.category=='size'){
+          if (t.category=='size' && actualFilter=='rdSize'){
             if(t.name==sizeFilter || 'none'==sizeFilter)
               pets.push(petTemp);
           };
-          if (t.category=='age'){
+          if (t.category=='age' && actualFilter=='rdAge'){
             if(t.name==ageFilter || 'none'==ageFilter)
               pets.push(petTemp);
           };
-          if (t.category=='behaviour'){
+          if (t.category=='behaviour' && actualFilter=='rdBehaviour'){
             if(t.name==behaviourFilter || 'none'==behaviourFilter)
               pets.push(petTemp);
           };
-          if (t.category=='apperance'){
-            if(t.name==apperanceFilter || 'none'==behaviourFilter)
+          if (t.category=='apperance' && actualFilter=='rdApperance'){
+            if(t.name==apperanceFilter || 'none'==apperanceFilter)
               pets.push(petTemp);
           };
         });
-      };
-      if (filterPets.situation==statusFilter || 'none'==statusFilter){
+        if ((pet.status.name==statusFilter || 'none'==statusFilter) && (actualFilter=='rdStatus')){
           pets.push(petTemp);
+        };
       };
     });
   });
   
-  if (pets.length==0)
-    pets.petsTemp;
+  if (pets.length == 0 && actualFilter=='none')
+    pets = petsTemp;
   
+  actualFilter = 'none';
+  
+  console.log(pets);
   return pets;
 };
 
@@ -190,6 +192,7 @@ function setFilter(rd){
   if(rd.id == 'rdStatus')
     statusFilter = rd.value;
     
+  actualFilter = rd.id;
   
   displayOnMap(oldPosition);
 };

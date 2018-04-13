@@ -6,11 +6,40 @@
 </div>
 
 <div class='mapsFilters'>
-    <input type="button" value="Square" onclick="setSquare(5)"><br />
+    <h3>Filtros</h3>
+    <!--<input type="button" onclick="resetMap()" value="Resetar" /><br />-->
     
-    <input type="radio" name="myRadios" id="rdSize" onclick="setFilter(this);" value="Pequeno" />
-    <input type="radio" name="myRadios" id="rdSize" onclick="setFilter(this);" value="Médio" />
-    <input type="radio" name="myRadios" id="rdSize" onclick="setFilter(this);" value="Grande" />
+    <h4>Raio</h4>
+    <input style="margin-left: 20px; width: 50%;" type="range" value="1" min="0.5" max="20" step="0.5" name="slider_raio" onchange="setSquare(this.value)"  oninput="display.value=slider_raio.value" id="slider_raio" />
+    Km: <output id="display" style="color: black; width: 10%; margin: 0px;" name="display" for="slider_raio">1</output><br />
+    
+    <h4>Porte</h4>
+    <input type="radio" name="radioSize" id="rdSize" onclick="setFilter(this);" value="Pequeno" /> <small>Pequeno</small>
+    <input type="radio" name="radioSize" id="rdSize" onclick="setFilter(this);" value="Médio" /> <small>Médio</small>
+    <input type="radio" name="radioSize" id="rdSize" onclick="setFilter(this);" value="Grande" /> <small>Grande</small>
+    
+    <h4>Idade</h4>
+    <input type="radio" name="radioAge" id="rdAge" onclick="setFilter(this);" value="Filhote" /> <small>Filhote</small>
+    <input type="radio" name="radioAge" id="rdAge" onclick="setFilter(this);" value="Adulto" /> <small>Adulto</small>
+    <input type="radio" name="radioAge" id="rdAge" onclick="setFilter(this);" value="Idoso" /> <small>Idoso</small>
+    
+    <h4>Comportamento</h4>
+    <input type="radio" name="radioBehaviour" id="rdBehaviour" onclick="setFilter(this);" value="Calmo" /> <small>Calmo</small>
+    <input type="radio" name="radioBehaviour" id="rdBehaviour" onclick="setFilter(this);" value="Brincalhão" /> <small>Brincalhão</small>
+    <input type="radio" name="radioBehaviour" id="rdBehaviour" onclick="setFilter(this);" value="Dorminhoco" /> <small>Dorminhoco</small>
+    <input type="radio" name="radioBehaviour" id="rdBehaviour" onclick="setFilter(this);" value="Passeador" /> <small>Passeador</small>
+    
+    <h4>Aparência</h4>
+    <input type="radio" name="radioApperance" id="rdApperance" onclick="setFilter(this);" value="Pelo Curto" /> <small>Pelo Curto</small>
+    <input type="radio" name="radioApperance" id="rdApperance" onclick="setFilter(this);" value="Pelo Comprido" /> <small>Pelo Comprido</small>
+    
+    
+    <h4>Situação</h4>
+    <input type="radio" name="radioStatus" id="rdStatus" onclick="setFilter(this);" value="Perdido" /> <small>Perdido</small>
+    <input type="radio" name="radioStatus" id="rdStatus" onclick="setFilter(this);" value="Encontrado" /> <small>Encontrado</small>
+    <input type="radio" name="radioStatus" id="rdStatus" onclick="setFilter(this);" value="Avistado" /> <small>Avistado</small>
+    <input type="radio" name="radioStatus" id="rdStatus" onclick="setFilter(this);" value="Doação" /> <small>Doação</small>
+    
     
 </div>
 

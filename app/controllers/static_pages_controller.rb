@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
     
     def home
        @petsTemp = Pet.all
-       @user = User.first
+       @user = User.last
        @username = @user.name
        
        @statuses = Status.all

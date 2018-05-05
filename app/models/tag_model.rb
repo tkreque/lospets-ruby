@@ -1,8 +1,8 @@
-class Animal
+class TagModel
   include Mongoid::Document
   
   field :name, type: String
   field :icon, type: String
-  
-  embedded_in :breed
+  field :description, type: String
+  field :category, type: String
 end

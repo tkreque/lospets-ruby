@@ -17,13 +17,22 @@
   </div>
 
   <div class="field">
+    <label>Animal</label>
+    <%= form.select :animal, @animals.collect { |animal| [animal.name] } %>
+  </div>
+  
+  <div class="field">
     <%= form.label :breed %>
-    <%= form.text_field :breed, id: :pet_breed %>
+    <%= form.select :breed, @breeds.collect { |breed| [breed.name, breed.animal] if breed.animal = :animal } %>
   </div>
 
+  <!--<div class="field">-->
+  <!--  %= form.label :status %>-->
+  <!--  %= form.text_field :status, id: :pet_status %>-->
+  <!--</div>-->
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status, id: :pet_status %>
+    <%= form.select :name, @status.collect { |status| [status.name] } %>
   </div>
 
   <div class="field">

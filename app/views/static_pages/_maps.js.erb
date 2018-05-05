@@ -23,17 +23,16 @@ var circle = handler.addCircle(
     , radius: oldSquare }
     ,{ strokeColor: '#FF0000'}
 ); 
-var sizeFilter = 'none';
-var ageFilter = 'none';
-var behaviourFilter = 'none';
-var apperanceFilter = 'none';
-var statusFilter = 'none';
-var actualFilter = 'none';
+// var sizeFilter = 'none';
+// var ageFilter = 'none';
+// var behaviourFilter = 'none';
+// var apperanceFilter = 'none';
+// var statusFilter = 'none';
+// var actualFilter = 'none';
 
 
 // Get Location
 function setGeolocation(){
-  
   // Senac coords
   p = { coords: { latitude: -30.03518581 ,longitude: -51.22660625 } };
     
@@ -128,47 +127,51 @@ function setMarkers(position, square){
 function filterPets(petsTemp){
   filterPet = <%= raw @petsTemp.to_json %>;
   pets = [];
+  // console.log(filterPet);
   
-  $.each(filterPet, function(index,pet){
-    $.each(petsTemp, function(index2,petTemp){
-      if(
-        pet.name == petTemp.marker_title
-        && pet.address.lat == petTemp.lat
-        && pet.address.lng == petTemp.lng
-      ){
-        $.each(pet.tag,function(i,t){
-          if (t.category=='size' && actualFilter=='rdSize'){
-            if(t.name==sizeFilter || 'none'==sizeFilter)
-              pets.push(petTemp);
-          };
-          if (t.category=='age' && actualFilter=='rdAge'){
-            if(t.name==ageFilter || 'none'==ageFilter)
-              pets.push(petTemp);
-          };
-          if (t.category=='behaviour' && actualFilter=='rdBehaviour'){
-            if(t.name==behaviourFilter || 'none'==behaviourFilter)
-              pets.push(petTemp);
-          };
-          if (t.category=='apperance' && actualFilter=='rdApperance'){
-            if(t.name==apperanceFilter || 'none'==apperanceFilter)
-              pets.push(petTemp);
-          };
-        });
-        if ((pet.status.name==statusFilter || 'none'==statusFilter) && (actualFilter=='rdStatus')){
-          pets.push(petTemp);
-        };
-      };
-    });
-  });
+  // $.each(filterPet, function(index,pet){
+  //   $.each(petsTemp, function(index2,petTemp){
+  //     if(
+  //       pet.name == petTemp.marker_title
+  //       && pet.address.lat == petTemp.lat
+  //       && pet.address.lng == petTemp.lng
+  //     ){
+  //       $.each(pet.tag,function(i,t){
+  //         if (t.category=='size' && actualFilter=='rdSize'){
+  //           if(t.name==sizeFilter || 'none'==sizeFilter)
+  //             pets.push(petTemp);
+  //         };
+  //         if (t.category=='age' && actualFilter=='rdAge'){
+  //           if(t.name==ageFilter || 'none'==ageFilter)
+  //             pets.push(petTemp);
+  //         };
+  //         if (t.category=='behaviour' && actualFilter=='rdBehaviour'){
+  //           if(t.name==behaviourFilter || 'none'==behaviourFilter)
+  //             pets.push(petTemp);
+  //         };
+  //         if (t.category=='apperance' && actualFilter=='rdApperance'){
+  //           if(t.name==apperanceFilter || 'none'==apperanceFilter)
+  //             pets.push(petTemp);
+  //         };
+  //       });
+  //       if ((pet.status.name==statusFilter || 'none'==statusFilter) && (actualFilter=='rdStatus')){
+  //         pets.push(petTemp);
+  //       };
+  //     };
+  //   });
+  // });
   
-  if (pets.length == 0 && actualFilter=='none')
-    pets = petsTemp;
+  // if (pets.length == 0 && actualFilter=='none')
+  //   pets = petsTemp;
   
-  actualFilter = 'none';
+  // actualFilter = 'none';
   
-  console.log(pets);
-  return pets;
+  // pets = filterPet.filter();
+  
+  // console.log(pets);
+  return petsTemp;
 };
+
 
 // Get the new square size
 function setSquare(square){
@@ -178,21 +181,21 @@ function setSquare(square){
 };
 
 // Get new filter market
-function setFilter(rd){
+function setFilter(){
   
-  if(rd.id == 'rdSize')
-    sizeFilter = rd.value;
-  if(rd.id == 'rdAge')
-    ageFilter = rd.value;
-  if(rd.id == 'rdBehaviour')
-    behaviourFilter = rd.value;
-  if(rd.id == 'rdApperance')
-    apperanceFilter = rd.value;
+  // if(rd.id == 'rdSize')
+  //   sizeFilter = rd.value;
+  // if(rd.id == 'rdAge')
+  //   ageFilter = rd.value;
+  // if(rd.id == 'rdBehaviour')
+  //   behaviourFilter = rd.value;
+  // if(rd.id == 'rdApperance')
+  //   apperanceFilter = rd.value;
     
-  if(rd.id == 'rdStatus')
-    statusFilter = rd.value;
+  // if(rd.id == 'rdStatus')
+  //   statusFilter = rd.value;
     
-  actualFilter = rd.id;
+  // actualFilter = rd.id;
   
   displayOnMap(oldPosition);
 };
@@ -223,8 +226,8 @@ function setLegend(){
   for(i=0; i<statuses.length; i++){
     icon = {
       name: statuses[i].name,
-      iconDog: '/images/icons/'+ statuses[i].iconColor +'/'+ animals[0].icon,
-      iconCat: '/images/icons/'+ statuses[i].iconColor +'/'+ animals[1].icon
+      iconDog: '/images/icons/'+ statuses[i].icon +'/'+ animals[0].icon,
+      iconCat: '/images/icons/'+ statuses[i].icon +'/'+ animals[1].icon
     };
     
     icons.push(icon);

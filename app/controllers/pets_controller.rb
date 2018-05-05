@@ -15,6 +15,9 @@ class PetsController < ApplicationController
   # GET /pets/new
   def new
     @pet = Pet.new
+    @status = StatusModel.all
+    @animals = AnimalModel.all
+    @breeds = BreedModel.all
   end
 
   # GET /pets/1/edit

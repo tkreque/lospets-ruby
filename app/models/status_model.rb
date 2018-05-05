@@ -1,8 +1,7 @@
-class Animal
+class StatusModel
   include Mongoid::Document
   
   field :name, type: String
   field :icon, type: String
-  
-  embedded_in :breed
+  field :description, type: String
 end

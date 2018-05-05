@@ -3,10 +3,12 @@ class StaticPagesController < ApplicationController
     def home
        @petsTemp = Pet.all
        @user = User.last
-       @username = @user.name
        
-       @statuses = Status.all
-       @animals = Animal.all
+       
+    #   @username = @user.name
+       
+       @statuses = StatusModel.all
+       @animals = AnimalModel.all
        
        @pets = Gmaps4rails.build_markers @petsTemp do |pet, marker|
             marker.lat pet.address['lat']

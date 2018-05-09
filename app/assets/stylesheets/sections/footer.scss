@@ -1,0 +1,23 @@
+@import '../variables.scss';
+
+.appFooter {
+    display: block;
+    color: white;
+    background: $darkMainBlue;
+    text-align: center;
+    
+    .myInfo {
+        text-align:center;
+        padding: $spacing;
+        background: darken($darkMainBlue, 15%);
+    }
+
+    .infos {
+        text-align: center;
+        display: flex;
+        font-size: $fontSizeRegular;
+       justify-content: space-around;
+       padding: $spacing;
+        
+    }
+}

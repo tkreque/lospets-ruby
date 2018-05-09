@@ -1,0 +1,77 @@
+@import '../variables.scss';
+.appHeader {
+    padding: $spacing ($spacing * 2);
+    .superiorMenu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logoMenu {
+        padding-right: $spacing;
+        margin-right: $spacing;
+        border-right: 2px solid $darkMainBlue;
+        width: 125px;
+        
+    }
+    
+    .navegationMenu {
+        flex-grow: 1;
+        ul {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+    
+    
+    .userMenu {
+        display: none;
+        a {
+            padding: $spacing ;
+            display: block;
+            width: 140px;
+        }
+        
+        li {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            i {
+                margin-left: $spacing;
+                color: $darkMainBlue;
+            }
+            &:not(:last-child) {
+                border-bottom: 1px solid;
+            }
+            
+        }
+    }
+    
+    .loginMenu {
+        align-self: center;
+        align-items: center;
+        display: flex;
+        position: relative;
+        i {
+            margin-right: $spacing;
+        }
+        &.loggedIn:hover {
+            .userMenu {
+                position: absolute;
+                // top: ($spacing * 2.5);
+                top: 22px;
+                display: block;
+                width: 180px;
+                right: 0;
+                text-align: left;
+                background: #fff;
+                border-radius: 5px;
+                box-shadow: $grayShadown 2px 12px 20px
+            }
+            
+            .dropdown {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}

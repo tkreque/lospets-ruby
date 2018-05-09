@@ -1,0 +1,57 @@
+@import 'variables.scss';
+// @import 'google_maps.scss';
+
+// 
+//sections
+// @import 'sections/header.scss';
+// @import 'sections/footer.scss';
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: $darkMainBlue;
+    text-decoration: none;
+    &:hover,
+    &:active {
+        color: darken($darkMainBlue, 25%);
+    }
+}
+
+
+
+
+.appBody {
+    padding: $spacing ($spacing * 2);
+}
+
+input[type="checkbox"] {
+  display: none;    
+}
+
+input[type="checkbox"] + label {
+    color: $darkMainBlue;
+    position: relative;
+    cursor: pointer;
+    &:before {
+        width: 10px;
+        height: 10px;
+        content: "";
+        border: 1px solid $darkMainBlue;
+        display: inline-block;
+        border-radius: 2px;
+        margin-right: ($spacing/2);
+    }
+}
+
+input[type="checkbox"]:checked + label:after {
+    content: "";
+    height: 6px;
+    width: 6px;
+    background: #0d85b5;
+    position: absolute;
+    left: 3px;
+    bottom: 7px;
+}
+

@@ -18,21 +18,28 @@
 
   <div class="field">
     <label>Animal</label>
-    <%= form.select :animal, @animals.collect { |animal| [animal.name] } %>
+    <%= select_tag :animal, options_from_collection_for_select(@animals, "name", "name"), :onchange => "filterBreed(this.value);", :include_blank => "Select a animal type" %>
   </div>
   
   <div class="field">
     <%= form.label :breed %>
-    <%= form.select :breed, @breeds.collect { |breed| [breed.name, breed.animal] if breed.animal = :animal } %>
-  </div>
 
+
+    <!-- %= form.select :breed, @breeds.collect { |breed| [breed.name] if breed.type['name'] == 'Cachorro' }, :include_blank => "Select a breed" %>-->
+    <%= select_tag :breed, options_from_collection_for_select(@breeds.where('type.name' => 'Gato'), "id","name") %>
+  </div>
+  
+  <!--<label>Teste</label>-->
+  <!--%= select_tag :breed, grouped_collection_select(@breeds, :type['_id'], @animals, :_id, :name, :_id, :name) %>-->
+  <!--<br />-->
+  
   <!--<div class="field">-->
   <!--  %= form.label :status %>-->
   <!--  %= form.text_field :status, id: :pet_status %>-->
   <!--</div>-->
   <div class="field">
     <%= form.label :status %>
-    <%= form.select :name, @status.collect { |status| [status.name] } %>
+    <%= form.select :status, @status.collect { |status| [status.name] } %>
   </div>
 
   <div class="field">
@@ -59,3 +66,23 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<script>
+  function filterBreed(animal){
+    breedsFilter = [];
+    breeds = <%= raw @breeds.to_json %>;
+    
+    for (var i in breeds) {
+      if (breeds[i].type.name == animal){
+        breedsFilter.push(breeds[i]);
+      };
+    };
+    
+    if (breedsFilter) {
+       return $('#pet_breeds').html(breedsFilter);
+    } else {
+      return $('#pet_breeds').empty();
+    }
+    console.log(breedsFilter);
+  };
+</script>

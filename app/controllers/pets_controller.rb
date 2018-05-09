@@ -18,6 +18,7 @@ class PetsController < ApplicationController
     @status = StatusModel.all
     @animals = AnimalModel.all
     @breeds = BreedModel.all
+    # @breeds = BreedModel.where("type.name" => "?").all
   end
 
   # GET /pets/1/edit
@@ -74,4 +75,5 @@ class PetsController < ApplicationController
     def pet_params
       params.require(:pet).permit(:name, :breed, :status, :address, :user, :image, :tag)
     end
+    
 end

@@ -14,24 +14,3 @@
  *= require_self
  */
 
-.appHeader {
-    /*background-color: purple;*/
-    height: 10%;
-    width: 100%;
-    clear: both;
-    overflow: auto;
-}
-.appBody {
-    /*background-color: gray;*/
-    height: 85%;
-    width: 100%;
-    clear: both;
-    overflow: auto;
-}
-.appFooter {
-    /*background-color: black;*/
-    height: 5%;
-    width: 100%;
-    clear: both;
-    overflow: auto;
-}

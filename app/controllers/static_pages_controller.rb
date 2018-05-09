@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
        @user = User.last
        
        
-    #   @username = @user.name
+       @username = @user.name
        
        @statuses = StatusModel.all
        @animals = AnimalModel.all

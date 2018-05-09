@@ -1,25 +1,36 @@
 <header>
     <div class='superiorMenu'>
         <div class='logoMenu'>
-            <%= link_to image_tag('lospets_logo.png', alt: 'LosPets', width: 240, height: 120), root_path %>
+            <%= link_to image_tag('lospets_logo.png', alt: 'LosPets'), root_path %>
         </div>
         <div class="navegationMenu">
-            <div class='navegationLeftMenu'>
+            <!--<div class='navegationLeftMenu'>-->
                 <ul>
                     <li><%= link_to "Lista de Pets", '/pets' %></li>
                     <li><%= link_to "Usuários", '/users' %></li>
-                </ul>
-            </div>
-            <div class='navegationRightMenu'>
-                <ul>
                     <li><%= link_to "Sobre o projeto", '/about' %></li>
                     <li><%= link_to "Contato", '/contact' %></li>
                     <li><%= link_to "Ajude-me", '/help' %></li>
                 </ul>
-            </div>
+            <!--</div>-->
+            <!--<div class='navegationRightMenu'>-->
+            <!--    <ul>-->
+                    
+            <!--    </ul>-->
+            <!--</div>-->
         </div>
-        <div class='loginMenu'>
-            Olá <%= raw @username %>
+        <div class='loginMenu loggedIn'> <!-- the 'logged-in' class should be added only if the user is logged -->
+           <i class="material-icons md-dark">face</i>
+           Olá <%= raw @username %>
+           <i class="material-icons md-dark dropdown">arrow_drop_down</i>
+           <div class="userMenu">
+               <ul>
+                    <li> <i class="material-icons">account_circle</i>     <%= link_to "Meu cadastro", '/daveMustaine' %> </li>
+                    <li> <i class="material-icons">add_circle_outline</i> <%= link_to "Cadastrar Pet Perdido", '/vikingsSucks' %></li>
+                    <li> <i class="material-icons">archive</i>            <%= link_to "Histórico", '/theMecanixEhMelhorQueFourHorsemen' %></li>
+                    <li> <i class="material-icons">undo</i>               <%= link_to "Logout", '/getmeoutofhere' %></li>
+                </ul>
+           </div>
         </div>
     </div>
 </header>

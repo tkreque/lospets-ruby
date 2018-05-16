@@ -1,4 +1,4 @@
-<header>
+<header class="content">
     <div class='superiorMenu'>
         <div class='logoMenu'>
             <%= link_to image_tag('lospets_logo.png', alt: 'LosPets'), root_path %>
@@ -21,7 +21,7 @@
         </div>
         <div class='loginMenu loggedIn'> <!-- the 'logged-in' class should be added only if the user is logged -->
            <i class="material-icons md-dark">face</i>
-           Olá <%= raw @username %>
+           <!--Olá <%= raw @username %>-->
            <i class="material-icons md-dark dropdown">arrow_drop_down</i>
            <div class="userMenu">
                <ul>
@@ -32,5 +32,10 @@
                 </ul>
            </div>
         </div>
+        
+        <div class="menu-for-mobile">
+            <i class="material-icons">menu</i>
+        </div>
+        <div class="overlay"></div>
     </div>
 </header>

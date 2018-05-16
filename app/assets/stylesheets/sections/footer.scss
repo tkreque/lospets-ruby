@@ -2,17 +2,20 @@
 
 .appFooter {
     display: block;
-    color: white;
-    background: $darkMainBlue;
+    color: $fontColor;
+    background: $lightMainBlue;
     text-align: center;
-    
+    .support, .socialMedias {
+        display: inline-block;
+    }
     .myInfo {
         text-align:center;
         padding: $spacing;
-        background: darken($darkMainBlue, 15%);
+        background: darken($gray4, 15%);
+        color: white;
     }
 
-    .infos {
+    .infos .content{
         text-align: center;
         display: flex;
         font-size: $fontSizeRegular;

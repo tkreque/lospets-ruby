@@ -1,3 +1,20 @@
 // Place all the styles related to the Pets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pet_image {
+    border-radius: 50%;
+    width: 20em;
+    height: 20em;
+}
+
+.pet_image_small {
+    border-radius: 50%;
+    width: 10em;
+    height: 5em;
+}
+
+.static_map{
+    height: 300px;
+    width: 600px;
+}

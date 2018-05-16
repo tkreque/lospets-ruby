@@ -1,10 +1,12 @@
 class Address
   include Mongoid::Document
+  include Geocoder::Model::Mongoid
   
-  field :lat, type: String
-  field :lng, type: String
-  field :street, type: String
-  field :city, type: String
+  field :coordinates, :type => Array
+  field :address
+  
+  geocoded_by :address               # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates    
   
   embedded_in :user
   embedded_in :pet

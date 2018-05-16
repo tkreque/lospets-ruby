@@ -1,4 +1,5 @@
 @import 'variables.scss';
+@import 'medias.scss';
 // @import 'google_maps.scss';
 
 // 
@@ -24,6 +25,7 @@ a {
 
 .appBody {
     padding: $spacing ($spacing * 2);
+    position: relative;
 }
 
 input[type="checkbox"] {
@@ -55,3 +57,233 @@ input[type="checkbox"]:checked + label:after {
     bottom: 7px;
 }
 
+
+
+
+@mixin placeholderColor($color) {
+	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    	color: $color;
+	}
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		color: $color;
+		opacity:  1;
+	}
+	::-moz-placeholder { /* Mozilla Firefox 19+ */
+		color: $color;
+		opacity:  1;
+	}
+	:-ms-input-placeholder { /* Internet Explorer 10-11 */
+		color: $color;
+	}
+}
+
+
+
+body {
+	position: relative;
+	width: 100%;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+a {
+	color: $grayLink;
+}
+
+.row.isflex {
+	display: flex;
+	flex-wrap: wrap;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.row.isflex > [class*='col-'] {
+	display: flex;
+	flex-direction: column;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	position: relative;
+}
+
+
+.content {
+    @include tablet() {
+	    width: 90%;
+	    margin: 0 auto;
+    }
+    
+    @include wide {
+        width: 85%;
+    }
+    
+}
+
+
+.progress.active {
+	min-width: 400px;
+	height: 20px!important;
+	@include mobile {
+		max-width: 290px;
+		min-width: 190px;
+	}
+	.progress-bar {
+		width: 0%;
+		@include prefixer(transition, width 4s, -webkit -moz -o -ms);
+	}	
+}
+
+.visible .progress.active{
+	.progress-bar {
+		width: 100%!important;
+		@include prefixer(transition, width 4s, -webkit -moz -o -ms);
+	}
+}
+
+.add-content {
+	text-align:center;
+	max-width: 80px;
+	text-color: $fontColor;
+	font-size: $fontSmall;
+}
+
+.no-padding {
+	padding: 0px;
+}
+
+.no-margin {
+	margin: 0px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.overlay {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: rgba( 0, 0 , 0, 0.5);
+	width: 100%;
+	height: 100%;
+	z-index: 88;
+}
+
+
+#generalModal {
+	padding: $spacing;
+	border: 1px solid $gray1;
+	position: fixed;
+	z-index: 999999;
+	top: 50%;
+	left: 50%;
+	max-width: 80%;
+	display: table;
+	max-height: 80%;
+	min-height: 130px;
+	border-radius: 5px;
+	background: $white;
+	
+	> * {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	&.visible  + .overlay{
+		top: 0px;
+		z-index: 888888;
+		height: 100%;
+	}
+}
+.active[data-component="toggler"] {
+	[data-toggler-component="button"] {
+		position: relative;
+	}
+	[data-toggler-component="button"]:after {
+		content: "+";
+		position: absolute;
+		right: 10px;
+	}
+	
+
+	[data-toggler-component="content"] {
+		display: none;
+	}
+
+	&.enabled {
+		[data-toggler-component="content"]{
+			display: block;
+		}
+
+		[data-toggler-component="button"]:after {
+			content: "-";		
+		}
+	}
+
+
+}
+
+button, input, select {
+	&:focus {
+		outline:0;
+		&+.glyphicon.glyphicon-ok-sign {
+			display: initial;
+			position: relative;
+    		z-index: 99;
+    		margin-left: -#{$spacing * 4};
+		}
+	}
+}
+
+.input-wrapper {
+	position: relative;
+	padding: 0px;
+	.glyphicon.glyphicon-ok-sign {
+		display: none;
+	}
+}
+
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    lighten($fontColor, 15%);
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ 	color:    lighten($fontColor, 15%);
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    lighten($fontColor, 15%);
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    lighten($fontColor, 15%);
+}
+
+
+
+
+h5 {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing;
+    color: #000;
+    i {
+        margin-right: $spacing;
+    }
+}

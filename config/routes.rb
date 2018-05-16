@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :users
   resources :pets
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -10,5 +11,5 @@ Rails.application.routes.draw do
   get '/about',   to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
+  
 end

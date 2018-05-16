@@ -1,25 +1,68 @@
 @import '../variables.scss';
+@import '../medias.scss';
+
 .appHeader {
     padding: $spacing ($spacing * 2);
+    background: $lightMainBlue;
     .superiorMenu {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        overflow: hidden;
     }
     
     .logoMenu {
         padding-right: $spacing;
-        margin-right: $spacing;
-        border-right: 2px solid $darkMainBlue;
         width: 125px;
+        @include tablet() {
+            width: 100px;
+        }
         
     }
     
     .navegationMenu {
         flex-grow: 1;
+        @include max-mobile() {
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background: #d4eaf3;
+            z-index: 999;
+            overflow: hidden;
+            left: -100%;
+            transition: left 1s;
+            &.menu-open {
+                left: 0;
+                & ~ .overlay {
+                    display: block;
+                }
+            }
+        }
+        
         ul {
-            display: flex;
-            justify-content: space-around;
+            @include tablet() {
+              display: flex;
+              justify-content: space-around;
+              li {
+                  display: block;
+              }
+            }
+        }
+        a {
+            @include max-mobile(){
+                text-align: middle;
+                padding: $spacing;
+                border-bottom: 1px solid;
+                display: block;
+            }
+            color: black;
+            font-weight: bold;
+            text-transform: uppercase;
+            
+            &:hover {
+                color: #555;
+            }
         }
     }
     
@@ -72,6 +115,12 @@
             .dropdown {
                 transform: rotate(180deg);
             }
+        }
+    }
+    
+    .menu-for-mobile {
+        @include tablet() {
+            display: none;
         }
     }
 }

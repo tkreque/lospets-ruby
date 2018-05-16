@@ -2,12 +2,13 @@ class Pet
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  mount_uploader :image, AvatarUploader
+  
   field :name, type: String
   field :breed, type: Breed
   field :status, type: Status
   field :address, type: Address
   field :user, type: User
-  field :image, type: Array
   field :tag, type: Array
   
   # embeds_one :user

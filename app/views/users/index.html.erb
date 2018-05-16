@@ -1,16 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<h1>UsersController</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Contact</th>
-      <th>Pets</th>
-      <th>Configuration</th>
-      <th>Address</th>
-      <th>Image</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,12 +15,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.contact %></td>
-        <td><%= user.pets %></td>
-        <td><%= user.configuration %></td>
-        <td><%= user.address %></td>
-        <td><%= user.image %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

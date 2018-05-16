@@ -23,20 +23,9 @@
   
   <div class="field">
     <%= form.label :breed %>
-
-
-    <!-- %= form.select :breed, @breeds.collect { |breed| [breed.name] if breed.type['name'] == 'Cachorro' }, :include_blank => "Select a breed" %>-->
     <%= select_tag :breed, options_from_collection_for_select(@breeds.where('type.name' => 'Gato'), "id","name") %>
   </div>
   
-  <!--<label>Teste</label>-->
-  <!--%= select_tag :breed, grouped_collection_select(@breeds, :type['_id'], @animals, :_id, :name, :_id, :name) %>-->
-  <!--<br />-->
-  
-  <!--<div class="field">-->
-  <!--  %= form.label :status %>-->
-  <!--  %= form.text_field :status, id: :pet_status %>-->
-  <!--</div>-->
   <div class="field">
     <%= form.label :status %>
     <%= form.select :status, @status.collect { |status| [status.name] } %>
@@ -52,9 +41,27 @@
     <%= form.text_field :user, id: :pet_user %>
   </div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image, id: :pet_image %>
+  <!--<div class="field">-->
+  <!--  %= form.label :image %>-->
+  <!--  %= form.text_field :image, id: :pet_image %>-->
+  <!--</div>-->
+  
+  <div class=”field”>
+    <% if @pet.image? %>
+    <div class=”thumbnail”>
+      <%= image_tag @pet.image%>
+    </div>
+    <% end %><br>
+    <%= form.label :image %><br>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+  <div class=”field”>
+    <% if @pet.persisted? && @pet.image? %>
+    <label>
+      <%= form.check_box :remove_image %>
+    </label>
+    <% end %>
   </div>
 
   <div class="field">
@@ -68,6 +75,15 @@
 <% end %>
 
 <script>
+
+  function initialize() {
+  
+    var input = document.getElementById('pet_address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  };
+  
+  google.maps.event.addDomListener(window, 'load', initialize);
+  
   function filterBreed(animal){
     breedsFilter = [];
     breeds = <%= raw @breeds.to_json %>;
@@ -77,12 +93,12 @@
         breedsFilter.push(breeds[i]);
       };
     };
-    
-    if (breedsFilter) {
-       return $('#pet_breeds').html(breedsFilter);
-    } else {
-      return $('#pet_breeds').empty();
-    }
-    console.log(breedsFilter);
+      
+      if (breedsFilter) {
+         return $('#pet_breeds').html(breedsFilter);
+      } else {
+        return $('#pet_breeds').empty();
+      }
+      console.log(breedsFilter);
   };
 </script>

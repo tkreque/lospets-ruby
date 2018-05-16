@@ -28,6 +28,7 @@ gem 'underscore-rails'
 
 # Upload Image
 gem 'carrierwave'
+gem 'carrierwave-mongoid'
 gem "fog-aws"
 
 # Login

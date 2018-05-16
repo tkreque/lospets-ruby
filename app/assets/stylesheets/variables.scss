@@ -1,15 +1,62 @@
-// Color variables
+/*   
+/*      COLORS
+/***********************************************************************************/
+$white: white;
+$black: #000;
+
+//GRAY
+$gray1: #E6E6E6;
+$gray2:	#B8B8B8;
+$gray3: #808080;
+$gray4: #484848;
+$grayLink: #595959;
+
+
+//RED
+$redError: #CC2222;
+
 
 $lightMainBlue: #7ed4f6;
 $darkMainBlue: darken($lightMainBlue, 20%);
+$lightestMainBlue: #e1f6ff;
+$fontColor: #333;
 
+$white: #ffffff;
+
+$gray: #cacaca;
+$gray1: darken($gray, 10%);
 $grayShadown: #AAA;
 
 
-//spacing
+/*   
+/*      Spacing
+/***********************************************************************************/
 $spacing: 10px;
 
-//sizes
+
+
+
+/*   
+/*      SIZES
+/***********************************************************************************/
+$siteWidth: 85%;
+$spacing: 10px;
 $fontSizeSmall: 10px;
 $fontSizeRegular: 14px;
-$fontSizeBig: 18px
+$fontSizeBig: 18px;
+
+
+/*   
+/*      TEXT
+/***********************************************************************************/
+
+$fontColor: $gray4;
+$fontBase: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$fontSmallest: 10px;
+$fontSmall: 11px;
+$fontMediumLow: 14px;
+$fontMedium: 14px;
+$fontBig: 24px;
+$fontGiant: 50px;
+

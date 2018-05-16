@@ -113,9 +113,7 @@ function setMarkers(position, square){
   
   // Get all pets in the distance
   $.each(petsTemp, function(index, pet) {
-    console.log(pet);
     addressPet = new google.maps.LatLng(pet.lat,pet.lng);
-    // addressPet = new google.maps.LatLng(pet.lat,pet.coords);
     distance = google.maps.geometry.spherical.computeDistanceBetween(address,addressPet);
     
     if(distance <= square)

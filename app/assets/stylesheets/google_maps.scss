@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import './medias.scss';
 
  #mapsLegend {
     font-family: Arial, sans-serif;
@@ -16,15 +17,22 @@
 }
 
 #map {
-    height: 50em;
+    height: 300px;
+    @include tablet(){
+        height: 350px;
+    }
     width: 100%;
     
 }
 
 .maps {
-    display: inline-block;
-    width: 70%;
-    margin-right: 5%;
+    width: 100%;
+    @include tablet (){
+      display: inline-block;
+      width: 70%;
+      margin-right: 5%;    
+    }
+    
 }
 
 // SEARCH
@@ -78,9 +86,49 @@
 
 
 .mapsFilters {
-    display: inline-block;
-    width: 23%;
     vertical-align: top;
+    
+    @include max-mobile(){
+        position: absolute;
+        top: 90px;
+        left: 30px;
+        overflow: hidden;
+            &.filter-open {
+                .filterButton {
+                    background: lighten ($darkMainBlue, 25%);
+                }
+                
+                .filterContent{
+                  height: 280px;
+                  width: 250px;
+                  overflow: auto;
+                  padding: $spacing;
+                  border: 2px solid #ccc;
+                  
+                }
+            }
+        .filterButton {
+            color: white;
+            padding: $spacing;
+            border: 2px solid $lightMainBlue;
+            background: $darkMainBlue;
+            display: inline-block;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+        }
+        
+        .filterContent {
+            margin-top: $spacing;
+            background: white;
+            border-radius: 5px;
+            transition: height 0.5s;
+            height: 0px;
+            box-shadow: #ccc 3px 5px 12px;
+        }
+    }
     
     h3 {
       padding-bottom: $spacing;     

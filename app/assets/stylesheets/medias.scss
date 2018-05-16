@@ -1,0 +1,64 @@
+//************************************************************************//
+// Default: Webkit, moz, spec
+// Example: @include prefixer(border-radius, $radii, $o: true);
+//************************************************************************//
+@mixin prefixer ($property, $value,
+                 $webkit: true,
+                    $moz: true,
+                     $ms: false,
+                      $o: false,
+                   $spec: true) {
+  @if $webkit { -webkit-#{$property}: $value; }
+  @if $moz    {    -moz-#{$property}: $value; }
+  @if $ms     {     -ms-#{$property}: $value; }
+  @if $o      {      -o-#{$property}: $value; }
+  @if $spec   {         #{$property}: $value; }
+}
+
+$mobile-width: 200px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$wide-width: 1366px;
+
+@mixin mobile {
+  @media (min-width: #{$mobile-width}) {
+ 	@content;
+  }
+}
+
+@mixin max-mobile {
+    @media  (max-width: #{$tablet-width - 1px} ) {
+        @content;
+    }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width} ) {
+    @content; 
+  }
+}
+
+@mixin max-tablet {
+    @media  (max-width: #{$desktop-width - 1px} ) {
+        @content;
+    }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content; 
+  }
+}
+
+@mixin max-desktop {
+  @media (max-width: #{$wide-width - 1px}) {
+    @content; 
+  }
+}
+
+@mixin wide {
+  @media (min-width: #{$wide-width}) {
+    @content; 
+  }
+}
+

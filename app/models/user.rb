@@ -3,25 +3,32 @@ class User
   include Mongoid::Timestamps
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :timeoutable,
+         :recoverable, :rememberable, :trackable, :validatable, 
          :omniauthable, omniauth_providers: [:facebook, :twitter]
+
+  mount_uploader :avatar, AvatarUploader
   
-  field :name, type: String
-  field :email, type: String
-  field :provider, type: String
-  field :uid, type: String
-  field :contact, type: Contact
-  field :pets, type: Array
-  field :configuration, type: Configuration
-  field :address, type: Address
-  field :image, type: String
+  field :email,              type: String, default: ""
+  field :encrypted_password, type: String, default: ""
+
+  field :reset_password_token,   type: String
+  field :reset_password_sent_at, type: Time
+  field :remember_created_at, type: Time
+  field :sign_in_count,      type: Integer, default: 0
+  field :current_sign_in_at, type: Time
+  field :last_sign_in_at,    type: Time
+  field :current_sign_in_ip, type: String
+  field :last_sign_in_ip,    type: String
+
+  field :first_name, type: String
+  field :last_name, type: String
+  field :cpf, type: Integer
+  field :notify_me, type: Mongoid::Boolean, default: true
+  field :cellphone, type: Integer
   
-  embeds_one :configuration
   embeds_one :address
-  # embedded_in :pet
-  embeds_one :contact
   # embeds_many :pet
+  embeds_one :configuration
   
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
@@ -30,4 +37,5 @@ class User
       user.skip_confirmation!
     end
   end
+  
 end

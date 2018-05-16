@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
+//= require social-share-button
 //= require_tree .

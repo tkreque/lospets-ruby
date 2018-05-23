@@ -1,4 +1,5 @@
 @import '../variables.scss';
+@import '../medias.scss';
 
 .appFooter {
     display: block;
@@ -7,6 +8,47 @@
     text-align: center;
     .support, .socialMedias {
         display: inline-block;
+        flex-grow: 1;
+        img {
+            
+            width: 45px;
+        }
+        li {
+            display: inline-block;
+            text-align: center;
+        }
+        
+        ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+    
+    .socialMedias {
+        li {
+            width:55px;
+        }
+        
+    }
+    
+    .support {
+        ul {
+            
+            li {
+                display: flex;
+                margin-bottom: $spacing;
+                a {
+                    border: 1px solid #FFF;
+                    padding: $spacing / 2;
+                    border-radius: 5px;
+                    margin-right: $spacing / 2;
+                    background: aliceblue;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
     }
     .myInfo {
         text-align:center;
@@ -16,11 +58,30 @@
     }
 
     .infos .content{
-        text-align: center;
-        display: flex;
-        font-size: $fontSizeRegular;
-       justify-content: space-around;
-       padding: $spacing;
+        @include tablet() {
+          text-align: left;
+          display: flex;
+          font-size: $fontSizeRegular;
+         justify-content: space-around;
+         padding: $spacing;
+        }
+        
+        @include max-mobile(){
+            padding: $spacing 0;
+            
+            .support {
+                padding: $spacing;
+                border-bottom: 1px solid #4d9cbb;
+              
+                
+            }
+            
+            .socialMedias {
+                display: block;
+                padding: $spacing;
+                border-top: 1px solid #e9f9ff;
+            }
+        }
         
     }
 }

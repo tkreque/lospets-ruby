@@ -1,41 +1,39 @@
 <header class="content">
-    <div class='superiorMenu'>
-        <div class='logoMenu'>
-            <%= link_to image_tag('lospets_logo.png', alt: 'LosPets'), root_path %>
-        </div>
-        <div class="navegationMenu">
-            <!--<div class='navegationLeftMenu'>-->
-                <ul>
-                    <li><%= link_to "Lista de Pets", '/pets' %></li>
-                    <li><%= link_to "Usuários", '/users' %></li>
-                    <li><%= link_to "Sobre o projeto", '/about' %></li>
-                    <li><%= link_to "Contato", '/contact' %></li>
-                    <li><%= link_to "Ajude-me", '/help' %></li>
-                </ul>
-            <!--</div>-->
-            <!--<div class='navegationRightMenu'>-->
-            <!--    <ul>-->
-                    
-            <!--    </ul>-->
-            <!--</div>-->
-        </div>
-        <div class='loginMenu loggedIn'> <!-- the 'logged-in' class should be added only if the user is logged -->
-           <i class="material-icons md-dark">face</i>
-           <!--Olá <%= raw @username %>-->
-           <i class="material-icons md-dark dropdown">arrow_drop_down</i>
-           <div class="userMenu">
+   <div class='superiorMenu'>
+      <div class='logoMenu'>
+         <%= link_to image_tag('lospets_logo.png', alt: 'LosPets'), root_path %>
+      </div>
+      <div class="navegationMenu">
+         <!--<div class='navegationLeftMenu'>-->
+         <div class='loginMenu loggedIn'>
+            <!-- the 'logged-in' class should be added only if the user is logged -->
+            <!---i class="material-icons md-dark">face</i--->
+            <div class="profile-access">
+                <img src="/assets/users/john-doe.jpg" class='roundedImage' />
+                Olá John Doe
+                <i class="material-icons md-dark dropdown">arrow_drop_down</i>
+            </div>
+            <div class="userMenu">
                <ul>
-                    <li> <i class="material-icons">account_circle</i>     <%= link_to "Meu cadastro", '/daveMustaine' %> </li>
-                    <li> <i class="material-icons">add_circle_outline</i> <%= link_to "Cadastrar Pet Perdido", '/vikingsSucks' %></li>
-                    <li> <i class="material-icons">archive</i>            <%= link_to "Histórico", '/theMecanixEhMelhorQueFourHorsemen' %></li>
-                    <li> <i class="material-icons">undo</i>               <%= link_to "Logout", '/getmeoutofhere' %></li>
-                </ul>
-           </div>
-        </div>
-        
-        <div class="menu-for-mobile">
-            <i class="material-icons">menu</i>
-        </div>
-        <div class="overlay"></div>
-    </div>
+                  <li>    <%= link_to "Meu cadastro", '/daveMustaine' %> </li>
+                  <li>  <%= link_to "Cadastrar Pet Perdido", '/vikingsSucks' %></li>
+                  <li>             <%= link_to "Histórico", '/theMecanixEhMelhorQueFourHorsemen' %></li>
+                  <li>     <%= link_to "Logout", '/getmeoutofhere' %></li>
+               </ul>
+            </div>
+         </div>
+         <ul>
+            <li><%= link_to "Lista de Pets", '/pets' %></li>
+            <li><%= link_to "Usuários", '/users' %></li>
+            <li><%= link_to "Sobre o projeto", '/about' %></li>
+            <li><%= link_to "Contato", '/contact' %></li>
+            <li><%= link_to "Ajude-me", '/help' %></li>
+         </ul>
+         
+      </div>
+      <div class="menu-for-mobile">
+         <i class="material-icons">menu</i>
+      </div>
+      <div class="overlay"></div>
+   </div>
 </header>

@@ -6,7 +6,16 @@
     background: #fff !important;
     padding: 10px;
     margin: 10px;
-    border: 3px solid #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    @include max-mobile() {
+        padding: 5px;
+        margin: 5px;
+        left: 0;
+        right: initial!important;
+        bottom: 20px!important;
+        
+    }
 }
 
 #mapsLegend h3 {
@@ -14,14 +23,20 @@
 }
 #mapsLegend img {
     vertical-align: middle;
+    &:first-child {
+        @include max-mobile() {
+            display: none;
+        }
+    }
 }
 
 #map {
-    height: 300px;
+    height: 470px;
     @include tablet(){
-        height: 350px;
+        height: 700px;
     }
-    width: 100%;
+    
+   width: 100%;
     
 }
 
@@ -32,6 +47,10 @@
       width: 70%;
       margin-right: 5%;    
     }
+    
+    
+    
+    
     
 }
 
@@ -85,25 +104,65 @@
 }
 
 
+.filterButton {
+    display: none;
+}
+
 .mapsFilters {
     vertical-align: top;
     
+    @include tablet() {
+        display: inline-block;
+        width: 23%;
+    }
     @include max-mobile(){
         position: absolute;
         top: 90px;
         left: 30px;
+        
         overflow: hidden;
             &.filter-open {
-                .filterButton {
-                    background: lighten ($darkMainBlue, 25%);
+              .filterButton {
+                    background: lighten($darkMainBlue, 25%);
+                }
+                
+                .filterContent-overflow {
+                    overflow: auto;
+                    height: 100%;
                 }
                 
                 .filterContent{
+                  margin-top: 15px;
                   height: 280px;
                   width: 250px;
                   overflow: auto;
                   padding: $spacing;
-                  border: 2px solid #ccc;
+                  border: 2px solid #1fb4ef;
+                  position: relative;
+                  overflow: initial;
+                  &:before {
+                    content: "";
+                    position: absolute;
+                    top: -15px;
+                    left: 10px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 12.5px 15px 12.5px;
+                    border-color: transparent transparent #1fb4ef transparent;
+                  }
+                  
+                  &:after {
+                    content: "";
+                    position: absolute;
+                    top: -11.5px;
+                    left: 12px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 10px 11.5px 10px;
+                    border-color: transparent transparent #FFF transparent;
+                  }
                   
                 }
             }
@@ -123,7 +182,7 @@
         .filterContent {
             margin-top: $spacing;
             background: white;
-            border-radius: 5px;
+            eborder-radius: 5px;
             transition: height 0.5s;
             height: 0px;
             box-shadow: #ccc 3px 5px 12px;
@@ -141,10 +200,10 @@
     }
     
     h4 {
-        margin-top: ($spacing * 2);
+        margin-top: ($spacing * 2 );
     }
     
     label {
-        margin-bottom: ($spacing /2);
+        margin-bottom: ($spacing / 2);
     }
 }

@@ -5,8 +5,8 @@ class Address
   field :coordinates, :type => Array
   field :address
   
-  geocoded_by :address               # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates    
+  geocoded_by :address            
+  after_validation :geocode, :if => :address_changed?
   
   embedded_in :user
   embedded_in :pet

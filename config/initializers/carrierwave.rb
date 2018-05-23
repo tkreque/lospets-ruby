@@ -1,4 +1,3 @@
-require 'carrierwave/orm/activerecord'
 CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'                       
     config.fog_credentials = {
@@ -7,15 +6,15 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['AWS_SECRET_KEY'],
       region: 'sa-east-1'
     }
-    config.fog_public = true                                     
+    config.storage = :fog
     
     case Rails.env
         when 'production'
-            config.fog_directory = 'prod'
-            config.asset_host = 'https://s3-sa-east-1.amazonaws.com/lospets-files/img/prod'
+            config.fog_directory = 'lospets-files-prod'
+            config.asset_host = 'https://s3.amazonaws.com/lospets-files-prod'
     
         when 'development'
-            config.fog_directory = 'dev'
-            config.asset_host = 'https://s3-sa-east-1.amazonaws.com/lospets-files/img/dev'
+            config.fog_directory = 'lospets-files'
+            config.asset_host = 'https://s3.amazonaws.com/lospets-files'
     end
 end

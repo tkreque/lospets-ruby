@@ -23,7 +23,7 @@
   
   <div class="field">
     <%= form.label :breed %>
-    <%= select_tag :breed, options_from_collection_for_select(@breeds.where('type.name' => 'Gato'), "id","name") %>
+    <%= select_tag :breed, options_from_collection_for_select(@breeds.where('type.name' => 'Gato'), "id","name"), :include_blank => "Select a breed type" %>
   </div>
   
   <div class="field">
@@ -40,11 +40,6 @@
     <%= form.label :user %>
     <%= form.text_field :user, id: :pet_user %>
   </div>
-
-  <!--<div class="field">-->
-  <!--  %= form.label :image %>-->
-  <!--  %= form.text_field :image, id: :pet_image %>-->
-  <!--</div>-->
   
   <div class=”field”>
     <% if @pet.image? %>

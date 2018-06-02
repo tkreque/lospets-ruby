@@ -1,20 +1,59 @@
 // Place all the styles related to the Pets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./variables.scss";
+@import "./medias.scss";
 
-.pet_image {
-    border-radius: 50%;
-    width: 20em;
-    height: 20em;
-}
-
-.pet_image_small {
-    border-radius: 50%;
-    width: 10em;
-    height: 5em;
-}
-
-.static_map{
-    height: 300px;
-    width: 600px;
+.petProfile {
+    .static_map{
+        height: 300px;
+        width: 600px;
+        margin: ($spacing * 2) auto;
+        display: block;
+    }
+    
+    .petImage {
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        
+        @include tablet(){
+            width: 200px;
+            height: 200px;
+            
+            img {
+                border-radius: 50%;
+                width: 200px;
+                height: 200px;
+            }
+        }
+    }
+    
+    .petImage, .petDescription {
+        display: inline-block;
+    }
+    
+    .petDescription {
+        margin: ($spacing * 2) 0;
+        max-width: 100%;
+        strong {
+            color: $darkMainBlue;
+            display: block;
+        }
+        
+        p {
+            padding-bottom: ($spacing / 2);
+            margin-bottom:  ($spacing / 2);
+            border-bottom: 1px solid #CCC;
+        }
+        
+        @include tablet() {
+            vertical-align: top;
+            width: calc(100% - 300px);
+            margin-left: ( $spacing * 3);
+        }
+        
+    }
 }

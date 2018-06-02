@@ -10,6 +10,7 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
+    
   end
 
   # GET /pets/new
@@ -17,10 +18,13 @@ class PetsController < ApplicationController
     @status = StatusModel.all
     @animals = AnimalModel.all
     @breeds = BreedModel.all
+    @tags = TagModel.all
+    
+    
+    @categories = @tags.uniq{|x| x.category}
     
     @pet = Pet.new
     @pet.status=@status.first
-    # @breeds = BreedModel.where("type.name" => "?").all
   end
 
   # GET /pets/1/edit
@@ -28,6 +32,9 @@ class PetsController < ApplicationController
     @status = StatusModel.all
     @animals = AnimalModel.all
     @breeds = BreedModel.all
+    @tags = TagModel.all
+    
+    @categories = @tags.uniq{|x| x.category}
   end
 
   # POST /pets
@@ -37,13 +44,20 @@ class PetsController < ApplicationController
     @breedPet = BreedModel.where("_id" => params[:breed]).first
     @addressPet = Address.new("address" => params[:pet]["address"])
     
+    @tagPet = []
+    tag_ids = params[:tag]
+    
+    for t in tag_ids 
+      @tagPet.push(TagModel.where("_id" => t).first)
+    end
+    
     @pet = Pet.new({
       "name" => params[:pet]["name"],
       "status" => @statusPet,
       "breed" => @breedPet,
       "address" => @addressPet,
       "image" => params[:pet]["image"],
-      "tag" => params[:pet]["tag"]
+      "tag" => @tagPet
     })
     
     respond_to do |format|
@@ -60,7 +74,7 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
-    
+   
     respond_to do |format|
       if @pet.update(pet_params)
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
@@ -91,9 +105,6 @@ class PetsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
       params.require(:pet).permit(:name, :breed, :status, :address, :user, :image, :tag)
-      params[:status] = StatusModel.where("name" => params[:pet]["status"]).first
-      params[:breed] = BreedModel.where("_id" => params[:breed]).first
-      params[:address] = Address.new("address" => params[:pet]["address"])
     end
     
 end

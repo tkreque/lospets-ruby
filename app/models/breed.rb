@@ -6,4 +6,5 @@ class Breed
   
   embedded_in :pet
   embeds_one :animal
+  # has_one :animal
 end

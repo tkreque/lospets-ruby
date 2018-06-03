@@ -10,7 +10,7 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
-    
+    @user = current_user
   end
 
   # GET /pets/new
@@ -19,7 +19,6 @@ class PetsController < ApplicationController
     @animals = AnimalModel.all
     @breeds = BreedModel.all
     @tags = TagModel.all
-    
     
     @categories = @tags.uniq{|x| x.category}
     
@@ -43,6 +42,7 @@ class PetsController < ApplicationController
     @statusPet = StatusModel.where("name" => params[:pet]["status"]).first
     @breedPet = BreedModel.where("_id" => params[:breed]).first
     @addressPet = Address.new("address" => params[:pet]["address"])
+    @userPet = current_user._id
     
     @tagPet = []
     tag_ids = params[:tag]
@@ -57,6 +57,7 @@ class PetsController < ApplicationController
       "breed" => @breedPet,
       "address" => @addressPet,
       "image" => params[:pet]["image"],
+      "user_id" => @userPet,
       "tag" => @tagPet
     })
     
@@ -74,7 +75,6 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
-   
     respond_to do |format|
       if @pet.update(pet_params)
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }

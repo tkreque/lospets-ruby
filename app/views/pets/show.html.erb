@@ -29,7 +29,16 @@
     
     <p>
       <strong>User:</strong>
-      <%= @pet.user %>
+      <% if @pet.user.present? %>
+        <% if @pet.user.avatar.present? %>
+          <%= image_tag(@pet.user.avatar, class: "user_image", style: "width:45px;height:45px") %>
+        <% else %>
+           <img src="/assets/users/Paw-icon.png" class='user_image', style='width:45px;height:45px' />
+         <% end %>
+        <%= @pet.user['name'] %>
+      <% else %>
+        Usuário inexistente!
+      <% end %>
     </p>
     
     <p>
@@ -45,7 +54,7 @@
 
 <div>
   <% if @user %>
-    <% if @user._id == @pet.user['_id'] %>
+    <% if @user._id == @pet.user_id %>
       <input type="button" value="Encontrei" />
     <% else %>
       <h3>Send Message</h3>

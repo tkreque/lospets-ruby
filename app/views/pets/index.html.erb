@@ -11,6 +11,7 @@
       <th>Status</th>
       <th>Address</th>
       <th>User</th>
+      <th>Tag</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,7 +24,18 @@
         <td><%= pet.breed['name'] %></td>
         <td><%= pet.status['name'] %></td>
         <td><%= pet.address['address'] %></td>
-        <td><%= pet.user %></td>
+        <td>
+          <% if pet.user.present? %>
+            <%= pet.user['name'] %>
+          <% else %>
+            Usuário inexistente!
+          <% end %>
+        </td>
+        <td>
+          <% pet.tag.each do |tag| %>
+            <%= tag.name %><br />
+          <% end %>
+        </td>
         <td><%= link_to 'Show', pet %></td>
         <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
         <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

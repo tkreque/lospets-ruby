@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <img src="https://s3.amazonaws.com/lospets-files/img/lospets_logo.png" class='roundedImage' />
+    <h1>Olá <%= @user.name %></h1>
+    <br />
+    <p>
+      Você tem um novo comentário no seu Pet cadastrado - <%= @pet.name %>!<br />
+      Vá até o site para verificar!<br />
+      <%= link_to "LosPet - Meu Pet", @url %>
+    </p>
+  </body>
+</html>

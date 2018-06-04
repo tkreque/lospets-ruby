@@ -6,6 +6,10 @@ class PetsController < ApplicationController
   def index
     @pets = Pet.all
   end
+  
+  def my
+    @mypets = Pet.where("user" => current_user).all
+  end
 
   # GET /pets/1
   # GET /pets/1.json

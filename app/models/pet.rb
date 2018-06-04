@@ -15,4 +15,5 @@ class Pet
   embeds_one :breed
   embeds_one :status
   embeds_one :address
+  embeds_many :comments
 end

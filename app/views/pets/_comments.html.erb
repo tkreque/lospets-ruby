@@ -1,0 +1,32 @@
+<div>
+  <% if @pet.comments.size > 0 %>
+    <h3>Comments</h3>
+    <% for comment in @pet.comments %>
+      <h4><%= comment.from %> - <%= comment.created_at %></h4>
+      <p><%= comment.message %></p>
+    <% end %>
+  <% end %>
+</div>
+<br />
+<div>
+  <% if @user %>
+    <% if @user._id == @pet.user_id %>
+      <input type="button" value="Encontrei" />
+    <% else %>
+      <h3>Send Message:</h3>
+      <%= form_for [@pet, Comment.new] do |f| %>
+        <p><%= f.label :from %> <%= f.text_field :from, :value => @user['name']  %></p>
+        <p><%= f.text_area :message, :rows => 10 %></p>
+        <p><%= f.submit %></p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h3>Send Message:</h3>
+    <%= form_for [@pet, Comment.new] do |f| %>
+      <p><%= f.label :from %> <%= f.text_field :from %></p>
+      <p><%= f.text_area :message, :rows => 10 %></p>
+      <p><%= f.submit %></p>
+    <% end %>
+  <% end %>
+</div>
+<br />

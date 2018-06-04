@@ -76,7 +76,6 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
@@ -85,4 +84,17 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => "https://los-pets.com"}
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => ENV['GMAIL_USER'],
+   :password             => ENV['GMAIL_PASS'],
+   :authentication       => "plain",
+  :enable_starttls_auto => true
+  }
+  
+  config.textris_delivery_method = :twilio
 end

@@ -1,0 +1,9 @@
+<div>
+  <% if @pet.status['name'] == "Adoção" %>
+    <%= social_share_button_tag("Olá eu sou "+@pet.name+", você me quer me adotar? #LosPets", :url => pet_url, desc: "Olá eu sou "+@pet.name+", você me quer me adotar? #LosPets") %>
+  <% elsif @pet.status['name'] == "Encontrado" %>
+    <%= social_share_button_tag("Olá eu sou "+@pet.name+", você sabe quem é meu dono? #LosPets", :url => pet_url, desc: "Olá eu sou "+@pet.name+", você sabe quem é meu dono? #LosPets") %>
+  <% else %>
+    <%= social_share_button_tag("Olá eu sou "+@pet.name+", você me viu por ai? #LosPets", :url => pet_url, desc: "Olá eu sou "+@pet.name+", você me viu por ai? #LosPets") %>
+  <% end %>
+</div>

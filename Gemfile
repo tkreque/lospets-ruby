@@ -42,6 +42,7 @@ gem 'dotenv'
 gem 'rpush'
 gem 'twilio-ruby'
 gem 'textris'
+gem 'aws-sdk', '~> 3'
 
 # Share
 gem 'social-share-button'

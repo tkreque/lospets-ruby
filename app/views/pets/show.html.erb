@@ -52,38 +52,8 @@
   <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @pet.address['coordinates'][1] %>,<%= @pet.address['coordinates'][0] %>&zoom=13&size=600x300&maptype=roadmap&markers=<%= @pet.address['coordinates'][1] %>,<%= @pet.address['coordinates'][0] %>&key=AIzaSyDMI_uP_6ASCcL8ETf3uTu2_8hy1hn1ROw" class="static_map"></img>
 </div>
 
-<div>
-  <% if @user %>
-    <% if @user._id == @pet.user_id %>
-      <input type="button" value="Encontrei" />
-    <% else %>
-      <h3>Send Message</h3>
-      <label>From:</label>
-      <input type="text" value="<%= @user['name'] %>" />
-      <label>Message</label>
-      <textarea rows="4" cols="50"></textarea>
-      <input type="button" value="Enviar" />
-    <% end %>
-  <% else %>
-    <h3>Send Message</h3>
-    <label>From:</label>
-    <input type="text" />
-    <label>Message</label>
-    <textarea rows="4" cols="50"></textarea>
-    <input type="button" value="Enviar" />
-  <% end %>
-</div>
-
-<div>
-  <% if @pet.status['name'] == "Adoção" %>
-    <%= social_share_button_tag("Olá eu sou "+@pet.name+", você me quer me adotar? #LosPets", :url => pet_url, desc: "Olá eu sou "+@pet.name+", você me quer me adotar? #LosPets") %>
-  <% elsif @pet.status['name'] == "Encontrado" %>
-    <%= social_share_button_tag("Olá eu sou "+@pet.name+", você sabe quem é meu dono? #LosPets", :url => pet_url, desc: "Olá eu sou "+@pet.name+", você sabe quem é meu dono? #LosPets") %>
-  <% else %>
-    <%= social_share_button_tag("Olá eu sou "+@pet.name+", você me viu por ai? #LosPets", :url => pet_url, desc: "Olá eu sou "+@pet.name+", você me viu por ai? #LosPets") %>
-  <% end %>
-</div>
-
+<%= render 'pets/comments' %>
+<%= render 'pets/share' %>
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
 <%= link_to 'Back', pets_path %>

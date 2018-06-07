@@ -210,6 +210,27 @@
         }
         
         
+        &.logedOff {
+          @include tablet(){
+              display: table;
+              border-left: none;
+              padding: 0 $spacing;
+              height: 100%;
+              background: $darkMainBlue;
+              border-radius: 5px;
+              ul {
+                  display: table-cell;
+                  vertical-align: middle;
+                  li:first-child {
+                      margin-bottom: ($spacing / 2);
+                  }
+              }
+              a {
+                  font-size: 12px;
+                  color: white;
+              }
+          }    
+        }
         
         // &.loggedIn,
         &.userMenu ul:hover,

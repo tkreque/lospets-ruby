@@ -1,6 +1,10 @@
-<h1>Editing User</h1>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<% if current_user == @user %>
+    <h1>Editing User</h1>
+    
+    <%= render 'form', user: @user %>
+    
+    <%= link_to 'Show', @user %>
+<% else %>
+    <h2>Acesso Negado!</h2>
+    <small>Se você estiver com problemas de acesso entre em contato com o administrador do sistema!</small>
+<% end %>

@@ -1,0 +1,81 @@
+@import "./variables.scss";
+@import "./medias.scss";
+
+.pet {
+    display: block;    
+    padding: $spacing;
+    
+    &:nth-child(odd) {
+        background: #F5F5F5;
+    }
+    
+    .petName {
+      font-size: 22px;
+      color: darken($darkMainBlue, 10%);
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+    
+    .petWrapper {
+        display: block;
+        
+        .petImage {
+            max-width: 100%;
+        }
+    }
+    
+    .petDescriptor {
+        span {
+            color: darken($darkMainBlue, 10%);
+            display: block;
+            font-weight: bold;
+            
+        }
+        > div {
+            margin-top: ($spacing / 2);
+        }
+    }
+    
+    .petActions  {
+        margin-top: $spacing;
+    }
+    
+    .petActions a {
+      display: block;
+      padding: 5px;
+      background: #1fb4ef;
+      border: 0;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 17px;
+      color: white;
+      font-weight: bold;
+      border: 2px solid #238cb5;
+    
+    }
+    
+    @include tablet() {
+        .petImage {
+            display: inline-block;
+            width: 20%;
+            vertical-align: top;
+        }
+        
+        .petDescriptor {
+            display: inline-block;
+            padding-left: $spacing;
+            width: calc(79% - 211px);
+        }
+        .petActions {
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
+            margin-top: 0px;
+        }
+        .petActions a {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+    }
+}
+

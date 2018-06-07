@@ -36,6 +36,7 @@ class PetsController < ApplicationController
     @animals = AnimalModel.all
     @breeds = BreedModel.all
     @tags = TagModel.all
+    @address = @pet.address['address']
     
     @categories = @tags.uniq{|x| x.category}
   end
@@ -79,8 +80,23 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
+    
+    @pet.name = params[:pet]["name"]
+    @pet.status = StatusModel.where("name" => params[:pet]["status"]).first
+    @pet.breed = BreedModel.where("_id" => params[:breed]).first
+    @pet.address = Address.new("address" => params[:pet]["address"])
+    
+    @tagPet = []
+    tag_ids = params[:tag]
+    
+    for t in tag_ids 
+      @tagPet.push(TagModel.where("_id" => t).first)
+    end
+    @pet.tag = @tagPet
+    
     respond_to do |format|
-      if @pet.update(pet_params)
+      if @pet.update
+      # if @pet.update(pet_params)
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @pet }
       else
@@ -103,7 +119,7 @@ class PetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
-      @pet = Pet.find(params[:id])
+      @pet = Pet.find(params[:id]) or not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -48,13 +48,18 @@
       <% end %>
     </p>
   </div>
-<div>
-  <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @pet.address['coordinates'][1] %>,<%= @pet.address['coordinates'][0] %>&zoom=13&size=600x300&maptype=roadmap&markers=<%= @pet.address['coordinates'][1] %>,<%= @pet.address['coordinates'][0] %>&key=AIzaSyDMI_uP_6ASCcL8ETf3uTu2_8hy1hn1ROw" class="static_map"></img>
-</div>
 
+  <% if !@pet.address['coordinates'].nil? %>
+    <div>
+      <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @pet.address['coordinates'][1] %>,<%= @pet.address['coordinates'][0] %>&zoom=13&size=600x300&maptype=roadmap&markers=<%= @pet.address['coordinates'][1] %>,<%= @pet.address['coordinates'][0] %>&key=AIzaSyDMI_uP_6ASCcL8ETf3uTu2_8hy1hn1ROw" class="static_map"></img>
+    </div>
+  <% end %>
+  
 <%= render 'pets/comments' %>
 <%= render 'pets/share' %>
 
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<% if @pet.user == current_user %>
+  <%= link_to 'Edit', edit_pet_path(@pet) %> |
+<% end %>
 <%= link_to 'Back', pets_path %>
 </div>

@@ -1,43 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="petList">
+  <p id="notice"><%= notice %></p>  
+  <h1>Pets</h1>
 
-<h1>Pets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Avatar</th>
-      <th>Name</th>
-      <th>Breed</th>
-      <th>Status</th>
-      <th>Address</th>
-      <th>User</th>
-      <th>Tag</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pets.each do |pet| %>
-      <tr>
-        <td><%= image_tag(pet.image, class:"pet_image_small") %></td>
-        <td><%= pet.name %></td>
-        <td><%= pet.breed['name'] %></td>
-        <td><%= pet.status['name'] %></td>
-        <td><%= pet.address['address'] %></td>
-        <td>
-          <% if pet.user.present? %>
+  <% @pets.each do |pet| %>
+    <div class="pet">
+      <div class="petName"><%= pet.name %></div>
+      <div class="petWrapper">
+        <div class="petImage"><%= image_tag(pet.image, class:"pet_image_small") %></div>
+        <div class="petDescriptor">
+          
+          <div class="petBreed">
+            <span>Raça:</span>
+            <%= pet.breed['name'] %>
+          </div>
+          
+          <div class="petStatus">
+            <span>Status:</span>
+            <%= pet.status['name'] %>
+            </div>
+            
+          <div class="petAddress">
+            <span>Endereço:</span>
+            <%= pet.address['address'] %>
+          </div>
+          
+          <div class="petOwner">
+            <span> Usuário/Tutor:</span>
+            <% if pet.user.present? %>
             <%= pet.user['name'] %>
-          <% else %>
+            <% else %>
             Usuário inexistente!
-          <% end %>
-        </td>
-        <td>
-          <% pet.tag.each do |tag| %>
-            <%= tag.name %><br />
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', pet %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <% end %>
+          </div>
+          
+          <div class="petCharacteristics">
+            <span>Características</span>
+            <% pet.tag.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </div>
+          
+        </div>        
+        <div class="petActions"><%= link_to 'Ver Detalhes', pet %></div>  
+      </div>
+      
+    </div>
+  <% end %>
+</div>

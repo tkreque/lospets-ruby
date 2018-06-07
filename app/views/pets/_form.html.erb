@@ -57,11 +57,17 @@ input[type="checkbox"] {
     <%= form.select :status, @status.collect { |status| [status.name] } %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, id: :pet_address %>
-  </div>
-
+  <% if @pet.name.blank? %>
+    <div class="field">
+      <%= form.label :address %>
+      <%= form.text_field :address, id: :pet_address %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= form.label :address %>
+      <%= form.text_field :address, :value => @pet.address['address'], id: :pet_address %>
+    </div>
+  <% end %>
 <br />
 
   <div class="field">
@@ -70,8 +76,13 @@ input[type="checkbox"] {
       <h3><%= c.category.capitalize %></h3>
         <% for tag in @tags %>
           <% if tag.category == c.category %>
-            <%= check_box_tag 'tag[]', tag._id %>
-            <%= tag.name %>
+            <% if !@pet.name.blank? && @pet.tag.to_json.include?(tag.to_json) %>
+              <%= check_box_tag 'tag[]', tag._id, true %>
+              <%= tag.name %>
+            <% else %>
+              <%= check_box_tag 'tag[]', tag._id %>
+              <%= tag.name %>
+            <% end %>
           <% end %>
         <% end %>
     </div>

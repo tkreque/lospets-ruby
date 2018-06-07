@@ -21,6 +21,18 @@ a {
 }
 
 
+html, body {
+	height: 100%;
+}
+
+// @include tablet() {
+// 	.appFooter {
+// 		position: absolute;
+// 		bottom: 0px;
+// 		width: 100%;
+// 	}
+// }
+
 
 
 .appBody {
@@ -46,6 +58,13 @@ input[type="checkbox"] + label {
         border-radius: 2px;
         margin-right: ($spacing/2);
     }
+    @include tablet() {
+    	font-size: 17px;
+    	&:before {
+    		position: relative;
+    		top: 2px;
+    	}
+    }
 }
 
 input[type="checkbox"]:checked + label:after {
@@ -55,7 +74,7 @@ input[type="checkbox"]:checked + label:after {
     background: #0d85b5;
     position: absolute;
     left: 3px;
-    bottom: 8px;
+    bottom: 6px;
 }
 
 
@@ -280,7 +299,11 @@ button, input, select {
 
 
 
-
+h1, h2 {
+	margin-bottom: $spacing;
+    padding-bottom: ($spacing/2) ;
+    border-bottom: 3px solid $darkMainBlue;
+}
 h5 {
     font-size: 18px;
     display: flex;
@@ -290,5 +313,6 @@ h5 {
     color: #000;
     i {
         margin-right: $spacing;
+        font-size: 13px;
     }
 }

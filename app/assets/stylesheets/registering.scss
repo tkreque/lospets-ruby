@@ -1,0 +1,36 @@
+@import "./variables.scss";
+.quick_access {
+    padding: ($spacing * 2) 0;
+    
+    .or {
+        display: block;
+        text-align: center;
+        position: relative;
+        text-transform: uppercase;
+        font-weight: bold;
+        &:before {
+          content: "";
+          width: 35px;
+          height: 35px;
+          background: #fff;
+          position: absolute;
+          z-index: -1;
+          margin-left: -6px;
+        }
+        
+        &:after {
+           content: "";
+           border-bottom: 1px solid #080808;
+           width: 100%;
+           position: absolute;
+           left: 0;
+           top: 8px;
+           z-index: -2;
+        }
+    }
+    
+    a {
+        display: block;
+        margin-top: $spacing / 2;
+    }
+}

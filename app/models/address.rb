@@ -13,4 +13,5 @@ class Address
   
   embedded_in :user
   embedded_in :pet
+  embedded_in :configuration
 end

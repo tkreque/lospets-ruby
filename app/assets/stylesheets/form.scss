@@ -1,0 +1,83 @@
+@import "./variables.scss";
+@import "./medias.scss";
+
+.form {
+    .field {
+        margin-bottom: $spacing;
+        position: relative;
+        input {
+            border-radius: 5px;
+            padding: 20px 12px;
+            border: 1px solid $darkMainBlue;
+            width: calc(100% - 24px)
+        }
+        
+        em {
+            display: block;
+            font-size: 12px;
+            padding: 5px;
+        }
+        
+        label {
+          position: absolute;
+          z-index: 1;
+          top: 18px;
+          left: 5px;
+          color: #555;
+          font-size: 16px;
+          text-transform: lowercase;
+          transition: color 0.3s, font-size 0.3s;
+        }
+        
+        input:focus + label, .filledIn + label {
+            top: 5px;
+            font-size: 10px;
+            color: $darkMainBlue;
+        }
+    }
+    
+    .submit {
+      padding: 12px;
+      background: #1fb4ef;
+      border: 0;
+      border-radius: 5px;
+      width: 100%;
+      text-align: center;
+      font-size: 17px;
+      color: white;
+      font-weight: bold;
+      border: 2px solid #238cb5;
+    }
+    
+    .remember-me {
+        height: 40px;
+    }
+    
+    @include tablet(){
+        display: inline-block;
+        width: 65%;
+        
+        & + .quick_access {
+            display: inline-block;
+            width: calc(33% - 20px);
+            padding-left: 20px;
+            padding-top: 0;
+            vertical-align: top;
+            
+            .or {
+                display: none;
+            }
+        }
+    }
+}
+
+@include tablet(){
+    .formWrapper {
+        width: 600px;
+        padding: 60px;
+        margin: 60px auto;
+        border: 1px solid #1fb4ef;
+        border-radius: 10px;
+        box-shadow: 6px 7px 25px #CCC;
+    }
+}

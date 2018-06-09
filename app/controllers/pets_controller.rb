@@ -4,11 +4,26 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    @pets = Pet.where("ok" => false).all
   end
   
   def my
-    @mypets = Pet.where("user" => current_user).all
+    @mypets = Pet.where("user" => current_user, "ok" => false).all
+  end
+  
+  def encontrei
+    @pet = Pet.where("_id" => params[:id]).first
+    @pet.ok = true
+    
+    respond_to do |format|
+      if @pet.save
+        format.html { redirect_to @pet, notice: 'Que ótima noticia! Estamos removendo seu Pet do Catálogo! :)' }
+        format.json { render :show, status: :created, location: @pet }
+      else
+        format.html { render :new }
+        format.json { render json: @pet.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /pets/1
@@ -63,12 +78,13 @@ class PetsController < ApplicationController
       "address" => @addressPet,
       "image" => params[:pet]["image"],
       "user_id" => @userPet,
+      "ok" => true,
       "tag" => @tagPet
     })
     
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+        format.html { redirect_to @pet, notice: 'Seu Pet foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @pet }
       else
         format.html { render :new }
@@ -85,6 +101,11 @@ class PetsController < ApplicationController
     @pet.status = (StatusModel.where("name" => params[:pet]["status"]).first).as_json
     @pet.breed = (BreedModel.where("_id" => params[:breed]).first).as_json
     @pet.address = Address.new("address" => params[:pet]["address"])
+    if params[:pet]["ok"].nil?
+      @pet.ok = false
+    else
+      @pet.ok = params[:pet]["ok"]
+    end
     
     @tagPet = []
     tag_ids = params[:tag]
@@ -97,7 +118,7 @@ class PetsController < ApplicationController
     respond_to do |format|
       if @pet.update
       # if @pet.update(pet_params)
-        format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
+        format.html { redirect_to @pet, notice: 'Seu Pet foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @pet }
       else
         format.html { render :edit }
@@ -111,7 +132,7 @@ class PetsController < ApplicationController
   def destroy
     @pet.destroy
     respond_to do |format|
-      format.html { redirect_to pets_url, notice: 'Pet was successfully destroyed.' }
+      format.html { redirect_to pets_url, notice: 'Seu Pet foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -124,7 +145,7 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:name, :breed, :status, :address, :user, :image, :tag)
+      params.require(:pet).permit(:name, :breed, :status, :address, :user, :image, :tag, :ok)
     end
     
 end

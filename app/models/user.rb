@@ -27,7 +27,7 @@ class User
   # field :cpf, type: Integer
   field :notify_cellphone, type: Mongoid::Boolean, default: true
   field :notify_email, type: Mongoid::Boolean, default: true
-  field :cellphone, type: Integer
+  field :cellphone, type: String
   
   embeds_one :address
   has_many :pet

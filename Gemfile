@@ -47,6 +47,11 @@ gem 'aws-sdk', '~> 3'
 # Share
 gem 'social-share-button'
 
+# Other functionalities
+gem 'jquery_mask_rails', '~> 0.1.0'
+gem "recaptcha", require: "recaptcha/rails"
+
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'

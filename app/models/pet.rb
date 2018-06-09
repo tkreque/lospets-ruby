@@ -9,6 +9,7 @@ class Pet
   field :status, type: Status
   field :address, type: Address
   field :tag, type: Array
+  field :ok, type: Mongoid::Boolean, default: false
   
   belongs_to :user
   embeds_many :tag

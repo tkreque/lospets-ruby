@@ -16,4 +16,5 @@
 //= require underscore
 //= require gmaps/google
 //= require social-share-button
+//= require jquery.mask
 //= require_tree .

@@ -13,7 +13,10 @@
 <div>
   <% if @user %>
     <% if @user._id == @pet.user_id %>
-      <input type="button" value="Encontrei" />
+      <%= form_tag encontrei_pet_path(@pet), method: :put do %>
+        <%= hidden_field_tag :pet_id, @pet_id%>
+        <%= submit_tag 'Encontrei' %>
+      <% end %>
     <% else %>
       <h3>Enviar comentário:</h3>
       <%= form_for [@pet, Comment.new] do |f| %>
@@ -34,6 +37,7 @@
       <%= f.text_field :from %></p>
       <label for="message">Mensagem</label>
       <p><%= f.text_area :message, :rows => 10 %></p>
+      <%= recaptcha_tags %>
       <p><%= f.submit %></p>
     <% end %>
   <% end %>

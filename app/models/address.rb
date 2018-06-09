@@ -6,7 +6,7 @@ class Address
   field :address
   
   geocoded_by :address            
-  after_validation :geocode, :if => :address_changed?
+  after_validation :geocode
   
   reverse_geocoded_by :coordinates
   after_validation :reverse_geocode

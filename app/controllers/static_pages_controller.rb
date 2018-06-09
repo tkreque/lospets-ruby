@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
     
     def home
-       @petsTemp = Pet.all
+       @petsTemp = Pet.where("ok" => false).all
        
        @statuses = StatusModel.all
        @animals = AnimalModel.all
@@ -25,6 +25,15 @@ class StaticPagesController < ApplicationController
                     "<tr><td><input type='button' value='Visualizar perfil' name='btn_perfil' onclick='redirectPet(`#{pet._id}`)'  /></td></tr></table>"
             end
         end
+    end
+    
+    def about
+    end
+    
+    def contact
+    end
+    
+    def help
     end
     
 end

@@ -1,3 +1,4 @@
+<% provide(:title, "Login") %>
 <h2>Entrar</h2>
 
 <div class="formWrapper">
@@ -16,7 +17,7 @@
     <% if devise_mapping.rememberable? -%>
       <div class="field remember-me">
         <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <label for="remember_me">Lembrar</label>
       </div>
     <% end -%>
   

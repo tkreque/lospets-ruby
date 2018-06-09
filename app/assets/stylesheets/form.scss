@@ -5,11 +5,38 @@
     .field {
         margin-bottom: $spacing;
         position: relative;
-        input {
+        input, select {
             border-radius: 5px;
             padding: 20px 12px;
             border: 1px solid $darkMainBlue;
             width: calc(100% - 24px)
+        }
+        
+        select {
+            background: white;
+            width: 100%;
+        }
+        
+        .upload_image {
+            border-radius: 5px;
+            border: 1px solid #7ed4f6;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            color: white;
+            justify-content: center;
+            font-weight: bold;
+            background: #1fb4ef;
+            position: initial;
+            i {
+                color: white;
+                margin-left: $spacing;
+            }
+          
+                
+        }
+        input[type='file']#pet_image {
+            display: none;
         }
         
         em {
@@ -34,6 +61,23 @@
             font-size: 10px;
             color: $darkMainBlue;
         }
+        
+        span.msg {
+            color: #CC0000;
+            font-size: 12px;
+            padding: 5px;
+            display:none;
+        }
+        
+        &.error {
+            input {
+              border: 1px solid #CC0000;
+            }
+            
+            .msg {
+                display: block;
+            }
+        }
     }
     
     .submit {
@@ -47,6 +91,10 @@
       color: white;
       font-weight: bold;
       border: 2px solid #238cb5;
+      cursor: pointer;
+      &:hover {
+          background: darken(#1fb4ef, 10%);
+      }
     }
     
     .remember-me {

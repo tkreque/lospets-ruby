@@ -1,6 +1,9 @@
-<h1>Editing Pet</h1>
+<% provide(:title, "Pet") %>
+<h1>Editando perfil do Pet</h1>
 
 <%= render 'form', pet: @pet %>
 
-<%= link_to 'Show', @pet %> |
-<%= link_to 'Back', pets_path %>
+<%= link_to 'Perfil', @pet %> |
+<%= link_to 'Delear Pet', @pet, method: :delete, data: { confirm: 'Você tem certeza que deseja excluir este Pet?' } %>
+<br />
+<%= link_to 'Voltar', pets_path %>

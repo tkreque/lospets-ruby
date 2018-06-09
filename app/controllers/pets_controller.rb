@@ -82,8 +82,8 @@ class PetsController < ApplicationController
   def update
     
     @pet.name = params[:pet]["name"]
-    @pet.status = StatusModel.where("name" => params[:pet]["status"]).first
-    @pet.breed = BreedModel.where("_id" => params[:breed]).first
+    @pet.status = (StatusModel.where("name" => params[:pet]["status"]).first).as_json
+    @pet.breed = (BreedModel.where("_id" => params[:breed]).first).as_json
     @pet.address = Address.new("address" => params[:pet]["address"])
     
     @tagPet = []

@@ -51,9 +51,21 @@
       color: white;
       font-weight: bold;
       border: 2px solid #238cb5;
+      margin-bottom: $spacing;
+      
+      &.btn2 {
+          background: white;
+          color: #1fb4ef;
+      }
+      
+      &.btn_remove {
+          background: #cc0000;
+          border-color: #aa1111;
+      }
     
     }
     
+   
     @include tablet() {
         .petImage {
             display: inline-block;
@@ -64,7 +76,7 @@
         .petDescriptor {
             display: inline-block;
             padding-left: $spacing;
-            width: calc(79% - 211px);
+            width: calc(78% - 211px);
         }
         .petActions {
             display: inline-block;
@@ -74,8 +86,17 @@
         }
         .petActions a {
             max-width: 200px;
-            margin: 0 auto;
+            margin: 20px auto;
         }
     }
+    
+    & +  .linkwrapper {
+        display: block;
+        padding: $spacing;
+        a {
+            display: block;
+        }
+    }
+     
 }
 

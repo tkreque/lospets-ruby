@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/pets/my', to: 'pets#my'
   
-  resources :users, :only => [:show, :edit, :update]
+  resources :users, :only => [:show, :edit, :update, :destroy]
   resources :pets do
     resources :comments
   end

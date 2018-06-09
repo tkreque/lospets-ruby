@@ -14,7 +14,7 @@ handler.buildMap({
 });
 
 // GLOBAL VARIABLES
-var user = <%= raw @user.to_json %>;
+var user = <%= raw current_user.to_json %>;
 var oldPosition = 0;
 var oldSquare = 0;
 var circle = handler.addCircle(
@@ -32,30 +32,50 @@ var circle = handler.addCircle(
 
 
 // Get Location
+function quickGeolocation(){
+  if(navigator.geolocation) {
+      // Geolocation
+      navigator.geolocation.getCurrentPosition(displayOnMap,function (error){
+        if (error.code == error.PERMISSION_DENIED){
+          alert("Seu navegador está com esta opção desabilitada, por favor desbloqueie e tente novamente!");
+        } else {
+          alert("Seu navegador não suporta esta opção!");
+        };
+    });
+  };
+};
+
 function setGeolocation(){
   // Senac coords
-  p = { coords: { latitude: -30.03518581 ,longitude: -51.22660625 } };
+  p = { coords: { latitude: -30.030100 ,longitude: -51.224841 } };
   
-  // if (user) {
-  //   if(user.configuration.address){
-  //     // Default address for user configuration
-  //     p = { coords: { latitude: user.configuration.address.lat, longitude: user.configuration.address.lng } };
-  //     displayOnMap(p);
-  //   };
-  // } else {
+  if (user) {
+    if (user.configuration) {
+      if(user.configuration.address){
+        // Default address for user configuration
+        p = { coords: 
+          { 
+            latitude: user.configuration.address.coordinates[1], 
+            longitude: user.configuration.address.coordinates[0] 
+          } 
+        };
+        displayOnMap(p);
+      };
+    };
+  } else {
     if(navigator.geolocation) {
       // Geolocation
       navigator.geolocation.getCurrentPosition(displayOnMap,function (error){
         if (error.code == error.PERMISSION_DENIED){
           // User address
-          if (user) {
-            p = { coords: { latitude: user.address.lat ,longitude: user.address.lng } };
+          if (user.address) {
+            p = { coords: { latitude: user.address.coordinates[0] ,longitude: user.address.coordinates[1] } };
           };
           displayOnMap(p);
         };
       });
     };
-  // };
+  };
 };
 
 // Show the user location and call the circle area
@@ -92,16 +112,18 @@ function getSquare(){
     s = oldSquare;
   } else {
     // Check if the user has square configuration saved
-    if(user)
-      if (user.configuration.square)
-        s = user.configuration.square*1000;
-      else
-        // Default Square value (1KM)
-        s = 1000; 
-    else
+    if (user) {
+      if(user.configuration)
+        if (user.configuration.square) {
+          s = user.configuration.square*1000;
+        } else {
+          s = 1000; 
+        };
+    } else {
       s = 1000;
-  }
-    
+    };
+  };
+  
   return s;
 };
 

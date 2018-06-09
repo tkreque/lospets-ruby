@@ -1,53 +1,63 @@
+<% provide(:title, "Pet") %>
+
 <p id="notice"><%= notice %></p>
 
 <% if current_user.present? %>
   <h1>Meus Pets</h1>
   
-  <table>
-    <thead>
-      <tr>
-        <th>Avatar</th>
-        <th>Name</th>
-        <th>Breed</th>
-        <th>Status</th>
-        <th>Address</th>
-        <th>User</th>
-        <th>Tag</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @mypets.each do |pet| %>
-        <tr>
-          <td><%= image_tag(pet.image, class:"pet_image_small") %></td>
-          <td><%= pet.name %></td>
-          <td><%= pet.breed['name'] %></td>
-          <td><%= pet.status['name'] %></td>
-          <td><%= pet.address['address'] %></td>
-          <td>
+  <% @mypets.each do |pet| %>
+    <div class="pet">
+      <div class="petName"><%= pet.name %></div>
+      <div class="petWrapper">
+        <div class="petImage"><%= image_tag(pet.image, class:"pet_image_small") %></div>
+        <div class="petDescriptor">
+          
+          <div class="petBreed">
+            <span>Raça:</span>
+            <%= pet.breed['name'] %>
+          </div>
+          
+          <div class="petStatus">
+            <span>Status:</span>
+            <%= pet.status['name'] %>
+            </div>
+            
+          <div class="petAddress">
+            <span>Endereço:</span>
+            <%= pet.address['address'] %>
+          </div>
+          
+          <div class="petOwner">
+            <span> Usuário/Tutor:</span>
             <% if pet.user.present? %>
-              <%= pet.user['name'] %>
+            <%= pet.user['name'] %>
             <% else %>
-              Usuário inexistente!
+            Usuário inexistente!
             <% end %>
-          </td>
-          <td>
+          </div>
+          
+          <div class="petCharacteristics">
+            <span>Características</span>
             <% pet.tag.each do |tag| %>
-              <%= tag.name %><br />
+              <%= tag.name %>
             <% end %>
-          </td>
-          <td><%= link_to 'Show', pet %></td>
-          <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-          <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div>
+          
+        </div>        
+        <div class="petActions">
+          <%= link_to 'Ver Detalhes', pet %>
+          <%= link_to 'Editar perfil', edit_pet_path(pet), :class => "btn2" %>
+          <%= link_to 'Deletar Pet', pet, method: :delete, :class => "btn_remove", data: { confirm: 'Você tem certeza que deseja excluir este Pet?' } %>
+        </div>  
+      </div>
+      
+    </div>
   
-  <br>
-
-  <%= link_to 'New Pet', new_pet_path %>
+  <% end %>
+  <div class="linkwrapper">
+    <%= link_to 'Cadastrar novo pet', new_pet_path, :class => "btn_main" %>
+  </div>
+  
 <% else %>
   <script type="text/javascript">
     window.location.href="/users/sign_up"

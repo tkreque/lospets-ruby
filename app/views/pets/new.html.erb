@@ -1,6 +1,7 @@
-<h1>New Pet</h1>
+<% provide(:title, "Pet") %>
+<h1>Novo Pet</h1>
 
 <%= render 'form', pet: @pet %>
 
-<%= link_to 'Back', pets_path %>
+<%= link_to 'Voltar', pets_path %>
 

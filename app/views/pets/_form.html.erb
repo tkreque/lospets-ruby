@@ -5,7 +5,7 @@ input[type="checkbox"] {
 }
 </style>
 
-<%= form_with(model: pet, local: true) do |form| %>
+<%= form_with(model: pet, local: true, :class => 'form') do |form| %>
   <% if pet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
@@ -18,17 +18,17 @@ input[type="checkbox"] {
     </div>
   <% end %>
 
-  <div class=”field”>
+  <div class="field">
     <% if @pet.image? %>
     <div class=”thumbnail”>
       <%= image_tag @pet.image%>
     </div>
-    <% end %><br>
-    <%= form.label :image %><br>
-    <%= form.file_field :image %>
+    <% end %>
+    <label class="upload_image" for="pet_image">Upload da Imagem <i class="material-icons">cloud_upload</i></label>
+    <%= form.file_field :image, id: "pet_image" %>
     <%= form.hidden_field :image_cache %>
   </div>
-  <div class=”field”>
+  <div class="field">
     <% if @pet.persisted? && @pet.image? %>
     <label>
       <%= form.check_box :remove_image %>
@@ -38,36 +38,30 @@ input[type="checkbox"] {
   <br />
 
   <div class="field">
-    <%= form.label :name %>
     <%= form.text_field :name, id: :pet_name %>
+    <label for="pet_name">Nome do pet</label>
   </div>
 
   <div class="field">
-    <label>Animal</label>
-    <%= select_tag :animal, options_from_collection_for_select(@animals, "name", "name"), :onchange => "filterBreed(this.value);", :include_blank => "Select a animal type" %>
+    <%= select_tag :animal, options_from_collection_for_select(@animals, "name", "name"), :onchange => "filterBreed(this.value);", :include_blank => "Selecione o tipo de animal" %>
   </div>
   
   <div class="field">
-    <%= form.label :breed %>
-    <%= select_tag :breed %>
+     <%= select_tag :breed %>
   </div>
   
   <div class="field">
-    <%= form.label :status %>
     <%= form.select :status, @status.collect { |status| [status.name] } %>
   </div>
 
-  <% if @pet.name.blank? %>
-    <div class="field">
-      <%= form.label :address %>
+  <div class="field">
+    <% if @pet.address.blank? %>
       <%= form.text_field :address, id: :pet_address %>
-    </div>
-  <% else %>
-    <div class="field">
-      <%= form.label :address %>
+    <% else %>
       <%= form.text_field :address, :value => @pet.address['address'], id: :pet_address %>
-    </div>
-  <% end %>
+    <% end %>
+    <label for="pet_address">Endereço</label>
+  </div>
 <br />
 
   <div class="field">
@@ -90,9 +84,9 @@ input[type="checkbox"] {
   
   </div>
 
-<br />
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => 'submit' %>
   </div>
 <% end %>
 
@@ -103,6 +97,7 @@ input[type="checkbox"] {
     var autocomplete = new google.maps.places.Autocomplete(input);
     
     $(document).ready(function(){
+      
       $("#breed").hide();
       $('label[for="pet_breed"]').hide();
     });

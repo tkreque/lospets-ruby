@@ -1,70 +1,89 @@
-// Action Cable provides the framework to deal with WebSockets in Rails.
-// You can generate new channels where WebSocket features live using the `rails generate channel` command.
-//
-//= require action_cable
-//= require_self
-//= require_tree ./channels
-
-// (function() {
-//   this.App || (this.App = {});
-//   $(document).ready(function() {
-//     var input = $('input');
-     
-//      input.on('blur',function(){
-//       var that = $(this);
-//       if ($(this).val() != "" ){
-//          that.addClass('filledIn');
-//       } else {
-//          that.removeClass('filledIn');
-//       }
-//      })
-//   })
-
-// }).call(this);
-
-
-$(document).on('ready',function(){
-    
-
 (function() {
-  this.App || (this.App = {});
-  
- 
- 
- this.App.form = {
-     
-     init : function () {
-        //  console.log('1234')
-        //  console.log(document.querySelectorAll("body"))
-        //  console.log($('input'))
-        //  console.log(document.querySelectorAll("body"))
-        var input = $(input);
-         this.bindEvents();
-         
-     },
-     
-     bindEvents : function(){
-         console.log("on bindEvents")
-         input.on('blur', this.handleOnBlur);
-     },
-     
-     
-    //     var modal_trigger = document.querySelectorAll("[data-modal]");
-    //   for (i = 0; i < modal_trigger.length; i++) {
-    //     var target = "#" + modal_trigger[i].getAttribute("data-modal");
-    //     modal_trigger[i].addEventListener("mousedown", () => module.exports.modal.open ( target ))
-    //   }
-     
-     
-     handleOnBlur : function(event) {
-         console.log("handleOnBlur")
-         console.log(event);
-     }
-     
-    
- }
-  
-  this.App.form.init();
+    this.App || (this.App = {});
+
+    var input;
+
+    this.App.form = {
+
+        init : function () {
+            input = $('input') ;
+            form = $(".form");
+            this.bindEvents();
+            this.checkOnLoad()
+        },
+
+        bindEvents : function(){
+            input.on('blur', this.handleOnBlur);
+            // form.on('submit', this.handleOnSubmit)
+        },
+        checkOnLoad : function() {
+            input.each(function(){
+                var that = $(this);
+                if (that.val() != "" ){
+                  that.addClass('filledIn');
+                } else {
+                    that.removeClass('filledIn')
+                }
+                      
+            })    
+        },
+        
+        handleOnBlur : function(event) {
+            var that  = $(event.target);
+
+            if (that.val() != "" ){
+                that.addClass('filledIn');
+                that.parent().removeClass('error')
+
+                // Validando se o email é valido
+                if (that.attr('id') == 'user_email') {
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                    if ( !emailReg.test( that.val() )) {
+                        that.siblings('.msg').text("O email informado é inválido")
+                        that.parent().addClass('error')         
+                    } else {
+                        that.parent().removeClass('error')          
+                    }
+                }
+                
+                //verificando se a senha tem ao menos 6 caracteres
+                if (that.attr('id') == 'user_password') {
+                    if (that.val().length < 6) {
+                        that.siblings('.msg').text("A senha precisa ter, no mínimo, 6 caractéres")
+                        that.parent().addClass('error')         
+                    } else {
+                        that.parent().removeClass('error')          
+                    }
+
+                }
+                
+                //validando se as senhas são iguais
+                if (that.attr('id') == 'user_password_confirmation') {
+                    if (that.val() != $('#user_password').val()) {
+                        that.siblings('.msg').text("As senhas não conferem")
+                        that.parent().addClass('error')     
+                    } else {
+                        that.parent().removeClass('error')
+                    }
+                    
+                }
+                
+                
+                
+
+            } else {
+                that.removeClass('filledIn');
+                that.siblings('.msg').text("Este campo é obrigatório")
+                that.parent().addClass('error')
+            }
+        },
+        
+        handleOnSubmit : function(event) {
+            event.preventDefault();
+            if ($('.field.error').length < 1) {
+                form.submit();
+            }
+        }
+    }
 }).call(this);
 
-})

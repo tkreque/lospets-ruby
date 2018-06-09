@@ -1,3 +1,4 @@
+<% provide(:title, "Pet") %>
 <p id="notice"><%= notice %></p>
 
 <div class="petProfile">
@@ -8,12 +9,12 @@
   
   <div class="petDescription">
     <p>
-      <strong>Name:</strong>
+      <strong>Nome do pet:</strong>
       <%= @pet.name %>
     </p>
     
     <p>
-      <strong>Breed:</strong>
+      <strong>Raça:</strong>
       <%= @pet.breed['name'] %>
     </p>
     
@@ -23,12 +24,12 @@
     </p>
     
     <p>
-      <strong>Address:</strong>
+      <strong>Endereço:</strong>
       <%= @pet.address['address'] %>
     </p>
     
     <p>
-      <strong>User:</strong>
+      <strong>Usuário/Tutor:</strong>
       <% if @pet.user.present? %>
         <% if @pet.user.avatar.present? %>
           <%= image_tag(@pet.user.avatar, class: "user_image", style: "width:45px;height:45px") %>
@@ -42,7 +43,7 @@
     </p>
     
     <p>
-      <strong>Tag:</strong>
+      <strong>Características:</strong>
       <% @pet.tag.each do |tag| %>
         <%= tag.name %><br />
       <% end %>
@@ -59,7 +60,7 @@
 <%= render 'pets/share' %>
 
 <% if @pet.user == current_user %>
-  <%= link_to 'Edit', edit_pet_path(@pet) %> |
+  <%= link_to 'Editar perfil', edit_pet_path(@pet) %> |
 <% end %>
-<%= link_to 'Back', pets_path %>
+<%= link_to 'Voltar', pets_path %>
 </div>

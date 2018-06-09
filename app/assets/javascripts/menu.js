@@ -7,31 +7,33 @@
 
 (function() {
   this.App || (this.App = {});
+  var menuBtn, menu, filterButton, filterWrap, profileAcess,userMenu;
   
-  
-  
-  $(document).ready(function() {
-    var menuBtn = $('.menu-for-mobile, .menu-for-mobile + .overlay');
-    var menu = $('.navegationMenu');
-    var filterButton = $('.filterButton');
-    var filterWrap = $('.mapsFilters');
-    var profileAccess = $('.profile-access');
-    var userMenu = $(".loginMenu");
+  this.App.menu = {
+    init: function() {
+       menuBtn = $('.menu-for-mobile, .menu-for-mobile + .overlay');
+       menu = $('.navegationMenu');
+       filterButton = $('.filterButton');
+       filterWrap = $('.mapsFilters');
+       profileAccess = $('.profile-access');
+       userMenu = $(".loginMenu");    
+       this.bindEvents();
+    },
     
-    menuBtn.on('click',function(){
-      menu.toggleClass('menu-open')
-    })
+    bindEvents : function() {
+      menuBtn.on('click',function(){
+        console.log("are youu here")
+        menu.toggleClass('menu-open')
+      })
     
-     filterButton.on('click',function(){
-       filterWrap.toggleClass('filter-open')
-    })
+      filterButton.on('click',function(){
+        filterWrap.toggleClass('filter-open')
+      })
     
-    profileAccess.on('click', function() {
+      profileAccess.on('click', function() {
         userMenu.toggleClass('open')
-    })
-    
-    
-  })
+      })
+    }
+  }
   
-
 }).call(this);

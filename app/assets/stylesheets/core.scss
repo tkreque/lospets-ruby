@@ -299,6 +299,11 @@ h1, h2 {
     padding-bottom: ($spacing/2) ;
     border-bottom: 3px solid $darkMainBlue;
 }
+.question {
+	margin-bottom: $spacing;
+    padding-bottom: ($spacing/2) ;
+	border-bottom: 1px solid $darkMainBlue;
+}
 h5 {
     font-size: 18px;
     display: flex;
@@ -404,4 +409,13 @@ h5 {
     	width: 48%;
     }
    
+}
+
+.contact {
+	margin-left: 1em;
+	
+	img {
+		width: 30px;
+		height: 30px;
+	}
 }

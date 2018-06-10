@@ -23,13 +23,11 @@ var circle = handler.addCircle(
     , radius: oldSquare }
     ,{ strokeColor: '#FF0000'}
 ); 
-// var sizeFilter = 'none';
-// var ageFilter = 'none';
-// var behaviourFilter = 'none';
-// var apperanceFilter = 'none';
-// var statusFilter = 'none';
-// var actualFilter = 'none';
-
+var situations = []; //Status (name had to be changed)
+var tagsSize = [];
+var tagsAge = [];
+var tagsBehaviour = [];
+var tagsApperance = [];
 
 // Get Location
 function quickGeolocation(){
@@ -156,53 +154,104 @@ function setMarkers(position, square){
 
 // Filter the pets based on the tags and situation
 function filterPets(petsTemp){
-  filterPet = <%= raw @petsTemp.to_json %>;
-  pets = [];
-  // console.log(filterPet);
+  filterPet = <%= raw @petsFilter.to_json %>;
+  petsArray = [];
+  petsArray2 = [];
+  petsArrayFiltro = [];
   
-  // $.each(filterPet, function(index,pet){
-  //   $.each(petsTemp, function(index2,petTemp){
-  //     if(
-  //       pet.name == petTemp.marker_title
-  //       && pet.address.lat == petTemp.lat
-  //       && pet.address.lng == petTemp.lng
-  //     ){
-  //       $.each(pet.tag,function(i,t){
-  //         if (t.category=='size' && actualFilter=='rdSize'){
-  //           if(t.name==sizeFilter || 'none'==sizeFilter)
-  //             pets.push(petTemp);
-  //         };
-  //         if (t.category=='age' && actualFilter=='rdAge'){
-  //           if(t.name==ageFilter || 'none'==ageFilter)
-  //             pets.push(petTemp);
-  //         };
-  //         if (t.category=='behaviour' && actualFilter=='rdBehaviour'){
-  //           if(t.name==behaviourFilter || 'none'==behaviourFilter)
-  //             pets.push(petTemp);
-  //         };
-  //         if (t.category=='apperance' && actualFilter=='rdApperance'){
-  //           if(t.name==apperanceFilter || 'none'==apperanceFilter)
-  //             pets.push(petTemp);
-  //         };
-  //       });
-  //       if ((pet.status.name==statusFilter || 'none'==statusFilter) && (actualFilter=='rdStatus')){
-  //         pets.push(petTemp);
-  //       };
-  //     };
-  //   });
-  // });
+  petsArraySize = [];
+  petsArrayAge = [];
+  petsArrayBehaviour = [];
+  petsArrayApperance = [];
   
-  // if (pets.length == 0 && actualFilter=='none')
-  //   pets = petsTemp;
+  petsFinal = [];
   
-  // actualFilter = 'none';
+   // Filter by Status
+  $.each(situations, function(index,stat){
+    pets = filterPet.filter(pet => pet.status.name == stat);
+    
+    $.each(pets, function(index2,pet){
+      petsArray.push(pet);  
+    });
+  });
   
-  // pets = filterPet.filter();
+  petsArray = _.uniq(petsArray);
   
-  // console.log(pets);
-  return petsTemp;
+  if (petsArray.length == 0)
+    petsArray = filterPet;
+  
+  // Filter by TAG
+  
+  petsArraySize = filterByTag(tagsSize,petsArray);
+  petsArrayAge = filterByTag(tagsAge,petsArray);
+  petsArrayBehaviour = filterByTag(tagsBehaviour,petsArray);
+  petsArrayApperance = filterByTag(tagsApperance,petsArray);
+  
+  $.each(petsArraySize, function(index, pet){
+    petsArrayFiltro.push(pet);
+  });
+  $.each(petsArrayAge, function(index, pet){
+    petsArrayFiltro.push(pet);
+  });
+  $.each(petsArrayBehaviour, function(index, pet){
+    petsArrayFiltro.push(pet);
+  });
+  $.each(petsArrayApperance, function(index, pet){
+    petsArrayFiltro.push(pet);
+  });
+  
+  petsArrayFiltro = _.uniq(petsArrayFiltro);
+  
+  petsArray2 = petsArray.filter( ( el ) => !petsArrayFiltro.includes( el ) );
+  
+  if (petsArray2.length == 0 && petsArrayFiltro.length == 0 )
+    petsArray2 = petsArray;
+  
+  // Get the final array and look for the markers
+  $.each(petsArray2, function(index,pet){
+    $.each(petsTemp, function(index2,petTemp){
+      if (pet.name == petTemp.marker_title && pet.address.coordinates[1] == petTemp.lat && pet.address.coordinates[0] == petTemp.lng){
+        petsFinal.push(petTemp);
+      };
+    });
+  });
+  
+  if (petsFinal.length == 0 && petsArrayFiltro.length == 0)
+    petsFinal = petsTemp;
+  
+  return petsFinal;
 };
 
+function filterByTag(tags,petsArray){
+  array = [];
+  pets = [];
+  
+  $.each(tags, function(index,tag){
+    
+    if (petsArray.filter(pet => pet.tag.map(function(t){return t.name}).indexOf(tag) > -1).length > 0){
+      pets = petsArray.filter(pet => pet.tag.map(function(t){
+        return t.name
+      }).indexOf(tag) == -1);  
+    } else {
+      if (tags.length == 1){
+        pets = petsArray.filter(pet => pet.tag.map(function(t){
+            return t.name
+          }).indexOf(tag) == -1);  
+      };
+    };
+    
+    $.each(pets, function(index2,pet){
+      array.push(pet);  
+    });
+  });
+  
+  array = _.uniq(array);
+  
+  if (array.length == petsArray.length && tags.length > 1)
+    array = [];
+  
+  return array;
+};
 
 // Get the new square size
 function setSquare(square){
@@ -212,21 +261,47 @@ function setSquare(square){
 };
 
 // Get new filter market
-function setFilter(){
+function setFilter(filter,type){
+
+  if (type == 'cbSize'){
+    index = tagsSize.indexOf(filter);
+    if (index > -1)
+      tagsSize.splice(index,1);
+    else
+      tagsSize.push(filter);
+  };
   
-  // if(rd.id == 'rdSize')
-  //   sizeFilter = rd.value;
-  // if(rd.id == 'rdAge')
-  //   ageFilter = rd.value;
-  // if(rd.id == 'rdBehaviour')
-  //   behaviourFilter = rd.value;
-  // if(rd.id == 'rdApperance')
-  //   apperanceFilter = rd.value;
-    
-  // if(rd.id == 'rdStatus')
-  //   statusFilter = rd.value;
-    
-  // actualFilter = rd.id;
+  if (type == 'cbAge'){
+    index = tagsAge.indexOf(filter);
+    if (index > -1)
+      tagsAge.splice(index,1);
+    else
+      tagsAge.push(filter);
+  };
+  
+  if (type == 'cbBehaviour'){
+    index = tagsBehaviour.indexOf(filter);
+    if (index > -1)
+      tagsBehaviour.splice(index,1);
+    else
+      tagsBehaviour.push(filter);
+  };
+  
+  if (type == 'cbApperance'){
+    index = tagsApperance.indexOf(filter);
+    if (index > -1)
+      tagsApperance.splice(index,1);
+    else
+      tagsApperance.push(filter);
+  };
+  
+  if (type == 'cbStatus'){
+    index = situations.indexOf(filter);
+    if (index > -1)
+      situations.splice(index,1);
+    else
+      situations.push(filter);
+  };
   
   displayOnMap(oldPosition);
 };

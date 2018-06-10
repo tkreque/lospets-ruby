@@ -2,12 +2,16 @@ class StaticPagesController < ApplicationController
     
     def home
        @petsTemp = Pet.where("ok" => false).all
+       @petsFilter = []
        
        @statuses = StatusModel.all
        @animals = AnimalModel.all
+       @tags = TagModel.all
+       @categories = @tags.uniq{|x| x.category}
        
        @pets = Gmaps4rails.build_markers @petsTemp do |pet, marker|
             if !pet.address['coordinates'].nil?
+                @petsFilter.push(pet)
                 marker.lat pet.address['coordinates'][1]
                 marker.lng pet.address['coordinates'][0]
                 marker.title pet.name

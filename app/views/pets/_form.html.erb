@@ -5,7 +5,7 @@ input[type="checkbox"] {
 }
 </style>
 
-<%= form_with(model: pet, local: true, :class => 'form') do |form| %>
+<%= form_with(model: pet, local: true, :class => 'form full') do |form| %>
   <% if pet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
@@ -21,7 +21,7 @@ input[type="checkbox"] {
   <div class="field">
     <% if @pet.image? %>
     <div class=”thumbnail”>
-      <%= image_tag @pet.image%>
+      <%= image_tag @pet.image, id: "avatar" %>
     </div>
     <% end %>
     <label class="upload_image" for="pet_image">Upload da Imagem <i class="material-icons">cloud_upload</i></label>
@@ -56,7 +56,7 @@ input[type="checkbox"] {
 
   <div class="field">
     <% if @pet.address.blank? %>
-      <%= form.text_field :address, id: :pet_address %>
+      <%= form.text_field :address, id: :pet_address, placeholder: "" %>
     <% else %>
       <%= form.text_field :address, :value => @pet.address['address'], id: :pet_address %>
     <% end %>
@@ -71,11 +71,11 @@ input[type="checkbox"] {
         <% for tag in @tags %>
           <% if tag.category == c.category %>
             <% if !@pet.name.blank? && @pet.tag.to_json.include?(tag.to_json) %>
-              <%= check_box_tag 'tag[]', tag._id, true %>
-              <%= tag.name %>
+              <%= check_box_tag 'tag[]', tag._id, true, id: ActiveSupport::Inflector.transliterate(tag.name.downcase).to_s %>
+              <label for= "<%= ActiveSupport::Inflector.transliterate(tag.name.downcase).to_s %>"> <%= tag.name %> </label>
             <% else %>
-              <%= check_box_tag 'tag[]', tag._id %>
-              <%= tag.name %>
+              <%= check_box_tag 'tag[]', tag._id, nil, id: ActiveSupport::Inflector.transliterate(tag.name.downcase).to_s %>
+              <label for= "<%= ActiveSupport::Inflector.transliterate(tag.name.downcase).to_s %>"> <%= tag.name %> </label>
             <% end %>
           <% end %>
         <% end %>

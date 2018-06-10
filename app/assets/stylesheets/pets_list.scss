@@ -5,7 +5,7 @@
     display: block;    
     padding: $spacing;
     
-    &:nth-child(odd) {
+    &:nth-child(even) {
         background: #F5F5F5;
     }
     
@@ -77,6 +77,9 @@
             display: inline-block;
             padding-left: $spacing;
             width: calc(78% - 211px);
+            &.map {
+                width: initial;
+            }
         }
         .petActions {
             display: inline-block;
@@ -99,4 +102,3 @@
     }
      
 }
-

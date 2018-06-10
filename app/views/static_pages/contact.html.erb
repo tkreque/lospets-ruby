@@ -1,9 +1,21 @@
 <% provide(:title, "Contato") %>
 <h1>Contato</h1>
-
 <br />
-<br />
-<br />
-<br />
-
-<h2> Em construção </h2>
+<div>
+    <p>
+        Para entrar em contato conosco pode enviar um e-mail para <%= mail_to "lospets.tcc@gmail.com" %> ou então entrar em contato através de nossas redes sociais.<br />
+        <%= link_to image_tag('/assets/icons/socialMedia/facebook.png', alt: 'facebook'), "https://www.facebook.com/lospets.site" %> 
+        <%= link_to image_tag('/assets/icons/socialMedia/twitter.png', alt: 'twitter'), "https://twitter.com/lospets_site" %><br />
+    </p>
+    <br />
+    <br />
+</div>
+<div>
+    <h3>Informações pessoais</h3>
+    <p>
+        Caso deseje entrar em contato comigo diretamente você pode me encontrar nos links abaixo:<br />
+        <%= link_to image_tag('/assets/icons/socialMedia/linkedin.png', alt: 'linkedin'), "https://www.linkedin.com/in/tkreque/" %> 
+        <%= link_to image_tag('/assets/icons/socialMedia/twitter.png', alt: 'twitter'), "https://twitter.com/Tkreque" %>
+        <%= link_to image_tag('/assets/icons/socialMedia/github.png', alt: 'github'), "https://github.com/tkreque" %>
+    </p>
+</div>

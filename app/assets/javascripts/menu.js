@@ -22,7 +22,6 @@
     
     bindEvents : function() {
       menuBtn.on('click',function(){
-        console.log("are youu here")
         menu.toggleClass('menu-open')
       })
     

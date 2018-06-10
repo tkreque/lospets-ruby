@@ -16,6 +16,4 @@ Rails.application.routes.draw do
       put :encontrei
     end
   end
-  
-  
 end

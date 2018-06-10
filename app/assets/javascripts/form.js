@@ -19,7 +19,8 @@
         checkOnLoad : function() {
             input.each(function(){
                 var that = $(this);
-                if (that.val() != "" ){
+                var placeholder = that.attr('placeholder')
+                if (that.val() != "" || placeholder != ''){
                   that.addClass('filledIn');
                 } else {
                     that.removeClass('filledIn')

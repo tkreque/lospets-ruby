@@ -3,7 +3,7 @@
     <h1>Ajustando a conta</h1>
     
     <%= render 'form', user: @user %>
-    <%= link_to 'Deletar conta', @user, method: :delete, data: { confirm: 'Você tem certeza que deseja excluir sua conta?' } %>
+    <%= link_to 'Deletar conta', @user, method: :delete, :class => "btn_error", data: { confirm: 'Você tem certeza que deseja excluir sua conta?' } %>
 <% else %>
     <h2>Acesso Negado!</h2>
     <small>Se você estiver com problemas de acesso entre em contato com o administrador do sistema!</small>

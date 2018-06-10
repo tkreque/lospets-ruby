@@ -2,9 +2,13 @@
 @import "./medias.scss";
 
 .form {
+    div > h3 {
+        margin-top: $spacing * 2;
+    }
     .field {
         margin-bottom: $spacing;
         position: relative;
+        min-height: 40px;
         input, select {
             border-radius: 5px;
             padding: 20px 12px;
@@ -35,7 +39,7 @@
           
                 
         }
-        input[type='file']#pet_image {
+        input[type='file']#pet_image, input[type='file']#user_image{
             display: none;
         }
         
@@ -105,6 +109,10 @@
         display: inline-block;
         width: 65%;
         
+        &.full {
+            width: 100%;
+        }
+        
         & + .quick_access {
             display: inline-block;
             width: calc(33% - 20px);
@@ -115,6 +123,19 @@
             .or {
                 display: none;
             }
+        }
+    }
+    input[type='checkbox'] {
+        display: none;
+    }
+    input[type='checkbox'] + label {
+        position: relative;
+        &:before {
+            
+        }
+        
+        &:after {
+            bottom: 3px!important;
         }
     }
 }

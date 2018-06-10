@@ -1,9 +1,19 @@
 <% provide(:title, "Pet") %>
-<h1>Editando perfil do Pet</h1>
-
-<%= render 'form', pet: @pet %>
-
-<%= link_to 'Perfil', @pet %> |
-<%= link_to 'Delear Pet', @pet, method: :delete, data: { confirm: 'Você tem certeza que deseja excluir este Pet?' } %>
-<br />
-<%= link_to 'Voltar', pets_path %>
+<% if current_user == @pet.user %>
+    <h1>Editando perfil do Pet</h1>
+    
+    <%= render 'form', pet: @pet %>
+    
+    <div class="petActions">
+        <%= link_to 'Perfil', @pet, :class => "btn2" %>
+        <%= link_to 'Deletar Pet', @pet, method: :delete, :class => "btn_remove", data: { confirm: 'Você tem certeza que deseja excluir este Pet?' } %>
+        <%= link_to 'Voltar', pets_path, :class => "btn2" %>
+    </div>
+<% else %>  
+    <h2>Acesso Negado!</h2>
+    <small>Se você estiver com problemas de acesso entre em contato com o administrador do sistema!</small>
+    <br />
+    <div class="petActions">
+        <%= link_to 'Voltar', @pet, :class => "btn2"  %>
+    </div>
+<% end %>

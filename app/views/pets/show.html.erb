@@ -59,8 +59,10 @@
 <%= render 'pets/comments' %>
 <%= render 'pets/share' %>
 
-<% if @pet.user == current_user %>
-  <%= link_to 'Editar perfil', edit_pet_path(@pet) %> |
-<% end %>
-<%= link_to 'Voltar', pets_path %>
+  <div class="petActions">
+    <% if @pet.user == current_user %>
+      <%= link_to 'Editar perfil', edit_pet_path(@pet), :class => "btn2" %>
+    <% end %>
+    <%= link_to 'Voltar', pets_path, :class => "btn2" %>
+  </div>
 </div>

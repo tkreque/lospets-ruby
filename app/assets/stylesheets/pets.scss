@@ -53,6 +53,9 @@
             vertical-align: top;
             width: calc(100% - 300px);
             margin-left: ( $spacing * 3);
+            &.map {
+                width: initial;
+            }
         }
         
     }
@@ -65,4 +68,15 @@
             }
         }
     }
+}
+
+$size: 5em;
+
+.social-share-button {
+    text-align: center;
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size*2;
+  }
 }

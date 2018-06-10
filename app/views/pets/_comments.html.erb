@@ -15,7 +15,7 @@
     <% if @user._id == @pet.user_id %>
       <%= form_tag encontrei_pet_path(@pet), method: :put do %>
         <%= hidden_field_tag :pet_id, @pet_id%>
-        <%= submit_tag 'Encontrei' %>
+        <%= submit_tag 'Encontrei',:class => "btn_main" %>
       <% end %>
     <% else %>
       <h3>Enviar comentário:</h3>

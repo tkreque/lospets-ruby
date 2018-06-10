@@ -20,13 +20,32 @@ class StaticPagesController < ApplicationController
                     :width => 32,
                     :height => 37
                 })
-                marker.infowindow "<table><tr><td><img src= '#{pet.image}' style='border-radius: 50%; height:80px; width:80px;' /><br /></td>"+
-                    "<td>Nome: #{pet.name} <br />"+
-                    "Raça: #{pet.breed['name']} - #{pet.breed['type']['name']} <br />"+
-                    "Situação: #{pet.status['name']} <br />"+
-                    "Endereço: #{pet.address['address']} <br />"+
-                    "Tags: #{pet.tag.map{ |t| t['name'] }} <br /></td></tr>"+
-                    "<tr><td><input type='button' value='Visualizar perfil' name='btn_perfil' onclick='redirectPet(`#{pet._id}`)'  /></td></tr></table>"
+                marker.infowindow "<div class='pet'>"+
+                                      "<div class='petName'>Nome: #{pet.name} </div>"+
+                                      "<div class='petWrapper'>"+
+                                         "<div class='petImage'>"+
+                                           "<img src= '#{pet.image}' style='border-radius: 50%; height:80px; width:80px;' />" +
+                                         "</div>" +
+                                         "<div class='petDescriptor map'>"+
+                                            "<div class='petBreed'>" +
+                                               "<span> Raça </span>  #{pet.breed['name']} - #{pet.breed['type']['name']} " +
+                                            "</div>" +
+                                            
+                                            "<div class='petStatus'>" +
+                                               "<span> Status </span> #{pet.status['name']} " +
+                                            "</div>" +
+                                            
+                                            "<div class='petAddress'>" +
+                                               "<span> Endereço </span> #{pet.address['address']} " +
+                                            "</div>" +
+                                            
+                                            "<div class='petCharacteristics'>" +
+                                               "<span> Características </span>  #{pet.tag.map{ |t| t['name'] }} " +
+                                            "</div>" +
+                                         "</div>"+
+                                      "</div>"+
+                                      "<a href='javascript:void(0) onclick=#{pet._id}' class='btn3'>visualizar perfil </a>"
+                                  "</div>";
             end
         end
     end

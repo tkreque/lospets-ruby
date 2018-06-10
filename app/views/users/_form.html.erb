@@ -5,7 +5,7 @@ input[type="checkbox"] {
 }
 </style>
 
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_with(model: user, local: true, :class => 'form full') do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -18,17 +18,17 @@ input[type="checkbox"] {
     </div>
   <% end %>
 
-  <div class=”field”>
+  <div class="field">
     <% if @user.avatar? %>
     <div class=”thumbnail”>
-      <%= image_tag @user.avatar%>
+      <%= image_tag @user.avatar, id: "avatar"%>
     </div>
     <% end %><br>
-    <%= form.label :avatar %><br>
-    <%= form.file_field :avatar %>
+    <label class="upload_image" for="user_image">Upload da Imagem <i class="material-icons">cloud_upload</i></label>
+    <%= form.file_field :image, id: "user_image" %>
     <%= form.hidden_field :avatar_cache %>
   </div>
-  <div class=”field”>
+  <div class="field">
     <% if @user.persisted? && @user.avatar? %>
     <label>
       <%= form.check_box :remove_avatar %>
@@ -38,38 +38,44 @@ input[type="checkbox"] {
   <br />
 
   <div class="field">
-    <label for="user_name">Nome</label>
+    
     <%= form.text_field :name, id: :user_name %>
+    <label for="user_name">Nome</label>
   </div>
   
   <div class="field">
-    <label for="user_email">E-mail</label>
+    
     <%= form.text_field :email, id: :user_email, :readonly => true, :disabled => true %>
+    <label for="user_email">E-mail</label>
   </div>
   
   <div class="field">
-    <label for="user_notify_email">Notificação de mensagens por E-mail</label>
+    
     <%= form.check_box :notify_email, id: :user_notify_email %>
+    <label for="user_notify_email">Notificação de mensagens por E-mail</label>
   </div>
   
   <div class="field">
-    <label for="user_address">Endereço</label>
+    
     <% if @user.address.blank? %>
-      <%= form.text_field :address, id: :user_address %>
+      <%= form.text_field :address, id: :user_address, placeholder: ""  %>
     <% else %>
       <%= form.text_field :address, :value => @user.address['address'], id: :user_address %>
     <% end %>
+    
   </div>
 <br />
   
   <div class="field">
-    <label for="user_cellphone">Celular</label>
+    
     <%= form.text_field :cellphone, id: :user_cellphone, placeholder: '(xx) xxxxx-xxxx' %> <!--, :data => {:mask => '(99) 99999-9999'}-->
+    <label for="user_cellphone">Celular</label>
   </div>
   
   <div class="field">
-    <label for="user_notify_cellphone">Notificação de mensagens por SMS</label>
+    
     <%= form.check_box :notify_cellphone, id: :user_notify_cellphone %>
+    <label for="user_notify_cellphone">Notificação de mensagens por SMS</label>
   </div>
   
   <br />
@@ -84,13 +90,14 @@ input[type="checkbox"] {
       </div>
       
       <div class="field">
+          
+          <%= form.text_field :configuration_address, id: :configuration_address, placeholder: ""  %>
           <label for="configuration_address">Endereço de pesquisa</label>
-          <%= form.text_field :configuration_address, id: :configuration_address %>
       </div>
       
   <% else %>
       <div class="field">
-          <label for="raio">Raio de pesquisa</label>
+          <p for="raio">Raio de pesquisa</p>
           <% if @user.configuration.square.nil? %>
               <%= form.range_field :raio, :id=>"slider_raio", in: 0.5..20, step: 0.5, :oninput => "display.value=slider_raio.value", value: 1, style: "margin-left: 20px; width: 50%;" %>
               Km: <output id="display" style="color: black; width: 10%; margin: 0px;" name="display" for="slider_raio">1</output>
@@ -103,12 +110,13 @@ input[type="checkbox"] {
       <br />
   
       <div class="field">
-          <label for="configuration_address">Endereço de pesquisa</label>
+          
           <% if @user.configuration.address.nil? %>
-              <%= form.text_field :configuration_address, id: :configuration_address %>
+              <%= form.text_field :configuration_address, id: :configuration_address, placeholder: ""  %>
           <% else %>
               <%= form.text_field :configuration_address, :value => @user.configuration.address['address'], id: :configuration_address %>
           <% end %>
+          <label for="configuration_address">Endereço de pesquisa</label>
       </div>
   
   <% end %>
@@ -117,7 +125,7 @@ input[type="checkbox"] {
   <br />
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "submit btn_main full"  %>
   </div>
 <% end %>
 

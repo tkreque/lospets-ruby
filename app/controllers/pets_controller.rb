@@ -78,7 +78,7 @@ class PetsController < ApplicationController
       "address" => @addressPet,
       "image" => params[:pet]["image"],
       "user_id" => @userPet,
-      "ok" => true,
+      "ok" => false,
       "tag" => @tagPet
     })
     

@@ -21,8 +21,8 @@
       <h3>Enviar comentário:</h3>
       <%= form_for [@pet, Comment.new] do |f| %>
         <div class="field">
-          <label for="from">De</label> 
           <%= f.text_field :from, :value => @user['name'], :readonly => true, :disabled => true  %>
+          <label for="from">De</label> 
         </div>
         <label for="message">Mensagem</label>
         <div class="field"><%= f.text_area :message, :rows => 10 %></div>
@@ -33,12 +33,15 @@
   <% else %>
     <h3>Enviar comentário:</h3>
     <%= form_for [@pet, Comment.new] do |f| %>
-      <p><label for="from">De</label> 
-      <%= f.text_field :from %></p>
-      <label for="message">Mensagem</label>
-      <p><%= f.text_area :message, :rows => 10 %></p>
+      
+      <div class='field'>
+            <%= f.text_field :from %>
+            <label for="from">De</label> 
+      </div>
+      <div class="field">
+        <%= f.text_area :message, :rows => 10 %></div>
       <%= recaptcha_tags %>
-      <p><%= f.submit %></p>
+      <p><%= f.submit :class => "submit"%></p>
     <% end %>
   <% end %>
 </div>

@@ -9,7 +9,7 @@
         margin-bottom: $spacing;
         position: relative;
         min-height: 40px;
-        input, select {
+        input, select, textarea {
             border-radius: 5px;
             padding: 20px 12px;
             border: 1px solid $darkMainBlue;
@@ -60,10 +60,16 @@
           transition: color 0.3s, font-size 0.3s;
         }
         
-        input:focus + label, .filledIn + label {
+        input:focus + label, textarea + label, .filledIn + label {
             top: 5px;
             font-size: 10px;
             color: $darkMainBlue;
+        }
+        
+        textarea + label {
+            top: 5px!important;
+            font-size: 10px!important;
+            color: $darkMainBlue!important;
         }
         
         span.msg {
@@ -148,5 +154,26 @@
         border: 1px solid #1fb4ef;
         border-radius: 10px;
         box-shadow: 6px 7px 25px #CCC;
+    }
+}
+
+
+.new_comment {
+    @extend .form;
+    
+    input[type='submit'] {
+        padding: 12px;
+        background: #1fb4ef;
+        border: 0;
+        border-radius: 5px;
+        width: calc(100% - 24px);
+        text-align: center;
+        font-size: 17px;
+        color: white;
+        font-weight: bold;
+        border: 2px solid #238cb5;
+        cursor: pointer;
+        display: inline-block;
+        margin: 5px 0;
     }
 }

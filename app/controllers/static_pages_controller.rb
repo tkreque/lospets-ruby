@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
                     :width => 32,
                     :height => 37
                 })
-                marker.infowindow "<div class='pet'>"+
+                marker.infowindow "<div class='petInfo'>"+
                                       "<div class='petName'>Nome: #{pet.name} </div>"+
                                       "<div class='petWrapper'>"+
                                          "<div class='petImage'>"+
@@ -44,7 +44,7 @@ class StaticPagesController < ApplicationController
                                             "</div>" +
                                          "</div>"+
                                       "</div>"+
-                                      "<a href='javascript:void(0) onclick=#{pet._id}' class='btn3'>visualizar perfil </a>"
+                                      "<a href='#{ pets_path }/#{pet._id}' class='btn3'>visualizar perfil </a>"+
                                   "</div>";
             end
         end

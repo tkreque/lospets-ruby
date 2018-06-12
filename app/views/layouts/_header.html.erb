@@ -15,7 +15,7 @@
                 <% if current_user.avatar.present? %>
                    <%= image_tag(current_user.avatar, class:"roundedImage") %>
                 <% else %>
-                   <img src="/assets/users/Paw-icon.png" class='roundedImage' />
+                   <img src="users/Paw-icon.png" class='roundedImage' />
                 <% end %>
                 Olá <%= current_user['name'].split(" ")[0] %>
                 <i class="material-icons md-dark dropdown">arrow_drop_down</i>

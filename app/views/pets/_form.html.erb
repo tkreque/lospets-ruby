@@ -43,15 +43,23 @@ input[type="checkbox"] {
   </div>
 
   <div class="field">
-    <%= select_tag :animal, options_from_collection_for_select(@animals, "name", "name"), :onchange => "filterBreed(this.value);", :include_blank => "Selecione o tipo de animal" %>
+    <% if @pet.breed.nil? %>
+      <%= select_tag :animal, options_from_collection_for_select(@animals, "name", "name"), :onchange => "filterBreed(this.value);", :include_blank => "Selecione o tipo de animal" %>
+    <% else %>
+      <%= select_tag :animal, options_from_collection_for_select(@animals, "name", "name", :selected => @pet.breed['type']['name']), :onchange => "filterBreed(this.value);", :include_blank => "Selecione o tipo de animal"  %>
+    <% end %>
   </div>
   
   <div class="field">
-     <%= select_tag :breed %>
+      <%= select_tag :breed %>
   </div>
   
   <div class="field">
-    <%= form.select :status, @status.collect { |status| [status.name] } %>
+    <% if @pet.status.nil? %>
+      <%= form.select :status, @status.collect { |status| [status.name] } %>
+    <% else %>
+      <%= form.select :status, @status.collect { |status| [status.name] }, :selected => @pet.status['name'] %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -101,6 +109,13 @@ input[type="checkbox"] {
       $("#breed").hide();
       $('label[for="pet_breed"]').hide();
     });
+    
+  
+    breed = <%= raw @pet.breed.to_json %>
+    if (breed){
+      filterBreed(breed.type.name);
+      $("#breed").val(breed._id['$oid']);
+    }
   };
   
   google.maps.event.addDomListener(window, 'turbolinks:load', initialize);

@@ -67,8 +67,10 @@ class PetsController < ApplicationController
     @tagPet = []
     tag_ids = params[:tag]
     
-    for t in tag_ids 
-      @tagPet.push(TagModel.where("_id" => t).first)
+    if !tag_ids.nil?
+      for t in tag_ids 
+        @tagPet.push(TagModel.where("_id" => t).first)
+      end
     end
     
     @pet = Pet.new({
@@ -110,10 +112,12 @@ class PetsController < ApplicationController
     @tagPet = []
     tag_ids = params[:tag]
     
-    for t in tag_ids 
-      @tagPet.push(TagModel.where("_id" => t).first)
+    if !tag_ids.nil?
+      for t in tag_ids 
+        @tagPet.push(TagModel.where("_id" => t).first)
+      end
+      @pet.tag = @tagPet
     end
-    @pet.tag = @tagPet
     
     respond_to do |format|
       if @pet.update

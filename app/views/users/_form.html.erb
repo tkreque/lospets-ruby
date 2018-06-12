@@ -25,7 +25,7 @@ input[type="checkbox"] {
     </div>
     <% end %><br>
     <label class="upload_image" for="user_image">Upload da Imagem <i class="material-icons">cloud_upload</i></label>
-    <%= form.file_field :image, id: "user_image" %>
+    <%= form.file_field :avatar, id: "user_image" %>
     <%= form.hidden_field :avatar_cache %>
   </div>
   <div class="field">
@@ -56,13 +56,12 @@ input[type="checkbox"] {
   </div>
   
   <div class="field">
-    
     <% if @user.address.blank? %>
       <%= form.text_field :address, id: :user_address, placeholder: ""  %>
     <% else %>
       <%= form.text_field :address, :value => @user.address['address'], id: :user_address %>
     <% end %>
-    
+    <label for="user_address">Seu Endereço</label>
   </div>
 <br />
   
@@ -90,9 +89,8 @@ input[type="checkbox"] {
       </div>
       
       <div class="field">
-          
           <%= form.text_field :configuration_address, id: :configuration_address, placeholder: ""  %>
-          <label for="configuration_address">Endereço de pesquisa</label>
+          <label for="configuration_address">Endereço da tela inicial</label>
       </div>
       
   <% else %>
@@ -107,21 +105,19 @@ input[type="checkbox"] {
           <% end %>
       </div>
       
-      <br />
   
       <div class="field">
-          
           <% if @user.configuration.address.nil? %>
               <%= form.text_field :configuration_address, id: :configuration_address, placeholder: ""  %>
           <% else %>
               <%= form.text_field :configuration_address, :value => @user.configuration.address['address'], id: :configuration_address %>
           <% end %>
-          <label for="configuration_address">Endereço de pesquisa</label>
+          <label for="configuration_address">Endereço da tela inicial</label>
       </div>
   
   <% end %>
   
-  </div>
+
   <br />
 
   <div class="actions">
@@ -149,7 +145,6 @@ input[type="checkbox"] {
        
       $('#user_cellphone').mask(maskBehavior, options);
     });
-  
   };
   
   google.maps.event.addDomListener(window, 'turbolinks:load', initialize);

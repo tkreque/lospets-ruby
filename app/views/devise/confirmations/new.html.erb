@@ -1,16 +1,22 @@
-<h2>Resend confirmation instructions</h2>
+<% provide(:title, "Login") %>
+<h2>Renviar informações de confirmação</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<div class="formWrapper">
+  <%= form_for(resource, as: resource_name, :html => {:class => 'form'}, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+  
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      <%= f.label :email %>
+      <span class="msg"></span>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Renviar informações de confirmação", :class => "submit" %>
+    </div>
+  <% end %>
+  <div class="quick_access">
+    <span class="or">Ou</span>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

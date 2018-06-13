@@ -1,5 +1,6 @@
-<p>Welcome <%= @email %>!</p>
+<img src="https://s3.amazonaws.com/lospets-files/img/lospets_logo.png" class='roundedImage' /><br />
+<p>Olá <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Você pode confirmar seu cadastro com o link abaixo:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirmar minha conta', confirmation_url(@resource, confirmation_token: @token) %></p>

@@ -1,43 +1,43 @@
 <% provide(:title, "Login") %>
 <h2>Cadastre-se</h2>
 <div class="formWrapper">
-<%= form_for(resource, as: resource_name, :html => {:class => 'form'}, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
-    <%= f.label :name %>
-    <span class="msg"></span>
-  </div>
+  <%= form_for(resource, as: resource_name, :html => {:class => 'form'}, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
   
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <%= f.label :email %>
-    <span class="msg"></span>
-  </div>
-
-  <div class="field">
+    <div class="field">
+      <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+      <%= f.label :name %>
+      <span class="msg"></span>
+    </div>
     
-    <% if @minimum_password_length %>
-    
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off" %>
-    <%= f.label :password %>
-    <span class="msg"></span>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.label :email %>
+      <span class="msg"></span>
+    </div>
+  
+    <div class="field">
+      
+      <% if @minimum_password_length %>
+      
+      <% end %>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.label :password %>
+      <span class="msg"></span>
+    </div>
+  
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <%= f.label :password_confirmation %>
+      <span class="msg"></span>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Cadastrar-se", :class => "submit" %>
+    </div>
+  <% end %>
+  <div class="quick_access">
+    <span class="or">Ou</span>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    <%= f.label :password_confirmation %>
-    <span class="msg"></span>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Cadastrar-se", :class => "submit" %>
-  </div>
-<% end %>
-<div class="quick_access">
-   <span class="or">Ou</span>
-<%= render "devise/shared/links" %>
-</div>
 </div>

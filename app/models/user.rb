@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, 
          :omniauthable, omniauth_providers: [:facebook, :twitter]
 
@@ -19,6 +19,10 @@ class User
   field :last_sign_in_at,    type: Time
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
+  field :confirmed_at, type: Time
+  field :confirmation_token, type: String
+  field :confirmation_sent_at, type: Time
+  field :unconfirmed_email, type: String
 
   field :provider, type: String
   field :uid, type: String

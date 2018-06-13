@@ -42,16 +42,13 @@
 
 .maps {
     width: 100%;
+    
     @include tablet (){
       display: inline-block;
       width: 70%;
       margin-right: 5%;    
     }
-    
-    
-    
-    
-    
+
 }
 
 // SEARCH

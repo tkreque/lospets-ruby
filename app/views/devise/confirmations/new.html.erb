@@ -2,7 +2,7 @@
 <h2>Renviar informações de confirmação</h2>
 
 <div class="formWrapper">
-  <%= form_for(resource, as: resource_name, :html => {:class => 'form'}, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :class => 'form' }) do |f| %>
     <%= devise_error_messages! %>
   
     <div class="field">

@@ -12,10 +12,15 @@ If you want to collaborate you're more than welcome!
 
 ###### Features
 Ruby on Rails (https://rubyonrails.org)
+
 MongoDB Atlas (https://www.mongodb.com/cloud/atlas)
+
 Google Maps API (https://developers.google.com/maps/documentation/javascript/reference/3)
+
 Facebook API (https://developers.facebook.com)
+
 Twitter API (https://developer.twitter.com/en/docs.html)
+
 Amazon AWS (https://aws.amazon.com)
 - Cloud9
 - EC2
@@ -26,28 +31,51 @@ Amazon AWS (https://aws.amazon.com)
 
 ###### Gems
 - MongoDB
+
 gem 'mongoid', github: 'mongodb/mongoid'
+
 gem 'bson_ext'
+
 - Maps
+
 gem 'geocoder'
+
 gem 'gmaps4rails'
+
 gem 'underscore-rails'
+
 - Upload Image
+- 
 gem 'carrierwave'
+
 gem 'carrierwave-mongoid'
+
 gem "fog-aws"
+
 - Login
+- 
 gem 'devise'
+
 gem 'omniauth'
+
 gem 'omniauth-facebook'
+
 gem 'omniauth-twitter'
+
 - Notification
+- 
 gem 'aws-sdk', '~> 3'
+
 - Share
+
 gem 'social-share-button'
+
 - Others
+
 gem 'jquery_mask_rails', '~> 0.1.0'
+
 gem 'recaptcha', require: 'recaptcha/rails'
+
 gem 'dotenv'
 
 ## How it works

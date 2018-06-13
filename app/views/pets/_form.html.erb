@@ -75,7 +75,7 @@ input[type="checkbox"] {
   <div class="field">
     <% for c in @categories %>
     <div>
-      <h3><%= c.category.capitalize %></h3>
+      <h3><%= c.categoria.capitalize %></h3>
         <% for tag in @tags %>
           <% if tag.category == c.category %>
             <% if !@pet.name.blank? && @pet.tag.to_json.include?(tag.to_json) %>

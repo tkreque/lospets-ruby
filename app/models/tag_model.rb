@@ -5,4 +5,5 @@ class TagModel
   field :icon, type: String
   field :description, type: String
   field :category, type: String
+  field :categoria, type: String
 end

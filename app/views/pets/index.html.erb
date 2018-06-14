@@ -1,6 +1,16 @@
 <% provide(:title, "Pet") %>
 <div class="petList">
-  <h1>Pets</h1>
+  <div class="titleWrapper">
+    <h1>Pets</h1>
+    <%= form_with(local: true, :class => 'form withinTitle') do |form| %>
+      <div class="field">
+        <%= form.text_field id: :pet_search %>
+        <label for="pet_search">Pesquisar por pet</label>
+         <%= form.submit "Pesquisar", :class => 'submit' %>
+      </div>
+    <% end %>
+  </div>
+  
 
   <% @pets.each do |pet| %>
     <div class="pet">

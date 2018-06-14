@@ -7,7 +7,42 @@ class CommentsController < ApplicationController
         respond_to do |format|
             if verify_recaptcha(model: @comment) && @comment.save
                 if @pet.user.notify_email
-                    PetMailer.email(@pet).deliver
+                    ses = Aws::SES::Client.new(
+                        region: 'us-east-1', 
+                        access_key_id: ENV['AWS_ACCESS_KEY'], 
+                        secret_access_key: ENV['AWS_SECRET_KEY']
+                    )
+                    
+                    html = 
+                        "<img src='https://s3.amazonaws.com/lospets-files/img/lospets_logo.png' class='roundedImage' />"\
+                        "<h1>Olá #{@pet.user.name}</h1>"\
+                        "<br />"\
+                        "<p>"\
+                        "Você tem um novo comentário no seu Pet cadastrado - #{@pet.name}!<br />"\
+                        "Vá até o site para verificar!<br />"\
+                        "<a href='#{pet_url(@pet)}'>LosPets - Meu Pet</a>"\
+                        "<\p>"
+                        
+                    txt =
+                        "Olá #{@pet.user.name},"\
+                        ""\
+                        "Você tem um novo comentário no seu Pet cadastrado - #{@pet.name}!"\
+                        "Vá até o site para verificar!"\
+                        "#{pet_url(@pet)}"
+                        
+                   ses.send_email({
+                        destination: { to_addresses: ["#{@pet.user.email}"], cc_addresses: [], bcc_addresses: [], },
+                        message: {
+                            subject: { charset: "UTF-8", data: "LosPets - Notificação de Comentário"},
+                            body: {
+                                text: {charset: "UTF-8", data: txt },
+                                html: {charset: "UTF-8", data: html },
+                            },
+                        },
+                        source: "noreply@los-pets.com",
+                        
+                    })
+                    # PetMailer.email(@pet).deliver //old
                 end
                 if @pet.user.cellphone && @pet.user.notify_cellphone
                     path = polymorphic_url(@pet)

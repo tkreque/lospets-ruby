@@ -2,9 +2,38 @@
 @import "./medias.scss";
 
 .form {
+    &.withinTitle {
+      margin: $spacing 0; 
+      
+      @include max-mobile(){ 
+          .submit {
+              padding: ($spacing / 2);
+              margin: $spacing 0;
+              display: block;
+              width: 100%;
+          }
+      }
+      
+      @include tablet() {
+          width: 100%;
+          .field {
+              display: flex;
+              input {
+                  flex-grow: 3;
+              }
+              
+              .submit {
+                  max-width: 280px;
+                  margin-left: $spacing;
+              }
+          }
+      }
+    }
+    
     div > h3 {
         margin-top: $spacing * 2;
     }
+    
     .field {
         margin-bottom: $spacing;
         position: relative;

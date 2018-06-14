@@ -185,8 +185,8 @@ function filterPets(petsTemp){
   
   petsArray = _.uniq(petsArray);
   
-  // if (petsArray.length == 0)
-  //   petsArray = filterPet;
+  if (petsArray.length == 0 && situations == 0)
+    petsArray = filterPet;
   
   // Filter by TAG
   
@@ -212,7 +212,7 @@ function filterPets(petsTemp){
   
   petsArray2 = petsArray.filter( ( el ) => !petsArrayFiltro.includes( el ) );
   
-  if (petsArray2.length == 0 && petsArrayFiltro.length == 0 && situations.length == 0)
+  if (petsArray2.length == 0 &&  (petsArrayFiltro.length == 0 || situations.length == 0))
     petsArray2 = petsArray;
   
   // Get the final array and look for the markers
@@ -224,7 +224,7 @@ function filterPets(petsTemp){
     });
   });
   
-  if (petsFinal.length == 0 && petsArrayFiltro.length == 0 && situations.length == 0)
+  if (petsFinal.length == 0 && (petsArrayFiltro.length == 0 || situations.length == 0))
     petsFinal = petsTemp;
   
   return petsFinal;

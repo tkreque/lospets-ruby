@@ -185,7 +185,7 @@ function filterPets(petsTemp){
   
   petsArray = _.uniq(petsArray);
   
-  if (petsArray.length == 0 && situations == 0)
+  if (petsArray.length == 0 && situations.length == 0)
     petsArray = filterPet;
   
   // Filter by TAG

@@ -1,8 +1,8 @@
  <% if  @pet %>
-  <% if @pet.status['name'] == "Doação" %>
+  <% if @pet.status['name'] == "Adoção" %>
     <meta property="og:description" content="Olá eu sou <%= @pet.name %>, você me quer me adotar? #LosPets">
     <meta name="twitter:title" content="Olá eu sou <%= @pet.name %>, você me quer me adotar? #LosPets">
-  <% elsif @pet.status['name'] == "Encontrado" %>
+  <% elsif @pet.status['name'] == "Resgatado" %>
     <meta property="og:description" content="Olá eu sou <%= @pet.name %>, você sabe quem é meu dono? #LosPets">
     <meta name="twitter:title" content="Olá eu sou <%= @pet.name %>, você sabe quem é meu dono? #LosPets">
   <% else %>

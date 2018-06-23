@@ -66,4 +66,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'rails-controller-testing'
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'guard'
+  gem 'guard-minitest'
+end
+# gem 'mongoid-fixture_set'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

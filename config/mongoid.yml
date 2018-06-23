@@ -53,10 +53,23 @@ test:
     default:
       database: lospets_test
       hosts:
-        - lospets-shard-00-00-dqtdj.mongodb.net:27017
-        - lospets-shard-00-01-dqtdj.mongodb.net:27017
-        - lospets-shard-00-02-dqtdj.mongodb.net:27017
+        - <%= "#{ENV['MONGODB_HOST1']}" %>
+        - <%= "#{ENV['MONGODB_HOST2']}" %>
+        - <%= "#{ENV['MONGODB_HOST3']}" %>
       options:
+        write:
+         w: 1
         read:
-          mode: :primary
-        max_pool_size: 1
+         mode: :secondary_preferred
+         tag_sets:
+           - use: web
+        user: <%= "#{ENV['MONGODB_USER']}" %>
+        password: <%= "#{ENV['MONGODB_PASS']}" %>
+        roles:
+         - 'dbOwner'
+        auth_mech: :scram
+        auth_source: admin
+        replica_set: <%= "#{ENV['MONGODB_SHARD']}" %>
+        ssl: true
+  options:
+    raise_not_found_error: false

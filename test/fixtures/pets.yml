@@ -2,18 +2,10 @@
 
 one:
   name: MyString
-  breed: 
-  status: 
-  address: 
-  user: 
-  image: 
-  tag: 
-
-two:
-  name: MyString
-  breed: 
-  status: 
-  address: 
-  user: 
-  image: 
-  tag: 
+  breed: BreedModel.where("_id" => "5aca587623c9fb12554adc03").first.as_json
+  status:  StatusModel.where("name" => "Perdido").first.as_json
+  address: Address.new(address: "Rua coronel genuino 130, Porto Alegre - RS - Brazil");
+  user: "5b13319723c9fb24260d934b"
+  image_filename: "img/test.png"
+  tag: []
+  ok: false

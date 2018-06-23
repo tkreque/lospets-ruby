@@ -33,7 +33,7 @@
         <% if @pet.user.avatar.present? %>
           <%= image_tag(@pet.user.avatar, class: "user_image", style: "width:45px;height:45px") %>
         <% else %>
-           <img src="/assets/users/Paw-icon.png" class='user_image', style='width:45px;height:45px' />
+           <%= image_tag("users/Paw-icon.png", class:"user_image", style:"width:45px;height:45px") %>
          <% end %>
         <%= @pet.user['name'] %>
       <% else %>

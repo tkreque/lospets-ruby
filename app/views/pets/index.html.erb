@@ -4,9 +4,8 @@
     <h1>Pets</h1>
     <%= form_with(local: true, :class => 'form withinTitle') do |form| %>
       <div class="field">
-        <%= form.text_field id: :pet_search %>
+        <%= form.text_field :pet_search, id: :pet_search %>
         <label for="pet_search">Pesquisar por pet</label>
-         <%= form.submit "Pesquisar", :class => 'submit' %>
       </div>
     <% end %>
   </div>
@@ -19,9 +18,10 @@
         <div class="petImage"><%= image_tag(pet.image, class:"pet_image_small") %></div>
         <div class="petDescriptor">
           
+          
           <div class="petBreed">
             <span>Raça:</span>
-            <%= pet.breed['name'] %>
+            <%= pet.breed['name'] %> - <%= pet.breed['type']['name']%>
           </div>
           
           <div class="petStatus">
@@ -57,3 +57,14 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $(document).ready(function(){
+  $("#pet_search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".pet").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
